@@ -1,0 +1,2853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UR Induction M&amp;E Portal — First-Year Students' Preparatory Program</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            urNavy: '#003366',
+            urNavyDark: '#002244',
+            urTeal: '#135b78',
+            urGold: '#D4AF37',
+            urGoldLight: '#FEF9E7',
+            urSky: '#0284C7',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .fade-in {
+      animation: fadeIn 0.22s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Custom Radio Pill Styling */
+    .pill-radio input:checked + span {
+      background-color: #003366;
+      color: #ffffff;
+      border-color: #003366;
+      box-shadow: 0 2px 6px rgba(0, 51, 102, 0.25);
+    }
+    .pill-radio-gold input:checked + span {
+      background-color: #0284C7;
+      color: #ffffff;
+      border-color: #0284C7;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+    }
+    /* Hide scrollbar for horizontal tab bar on mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @media print {
+      header nav, #progressStrip, #toast, .no-print {
+        display: none !important;
+      }
+      header {
+        position: static !important;
+      }
+      body {
+        background-color: #ffffff !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-200 selection:text-urNavy">
+
+  <!-- INSTITUTIONAL HEADER WITH OFFICIAL UR CIRCULAR EMBLEM LOGO -->
+  <header class="bg-gradient-to-r from-urNavy via-[#0a466b] to-urTeal text-white border-b-4 border-urGold shadow-lg sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-3.5 pb-3">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        <!-- Official UR Emblem Seal & Institutional Titles -->
+        <div class="flex items-center gap-3.5 sm:gap-4">
+          <!-- Crisp Circular White Badge with Precision Vector UR Emblem Seal -->
+          <div class="relative group shrink-0">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white p-1 shadow-lg ring-2 ring-urGold/90 flex items-center justify-center overflow-hidden">
+              <img id="customLogoImg" alt="University of Rwanda Logo" class="hidden w-full h-full object-contain rounded-full" />
+              <svg id="defaultUrLogoSvg" viewBox="0 0 220 220" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="University of Rwanda Official Emblem">
+                <defs>
+                  <!-- Curved top arc path for UNIVERSITY of RWANDA -->
+                  <path id="urTopTextArc" d="M 27,112 A 83,83 0 1,1 193,112" />
+                  <!-- Clip path for the inner deep teal disc -->
+                  <clipPath id="innerSealClip">
+                    <circle cx="110" cy="112" r="66" />
+                  </clipPath>
+                </defs>
+                <!-- Outer White Circular Disc -->
+                <circle cx="110" cy="110" r="107" fill="#ffffff" stroke="#135b78" stroke-width="2.5" />
+                <!-- Curved Institutional Title along Top Rim -->
+                <text fill="#135b78" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14.2" font-weight="800" letter-spacing="1.8">
+                  <textPath href="#urTopTextArc" startOffset="50%" text-anchor="middle">
+                    UNIVERSITY of RWANDA
+                  </textPath>
+                </text>
+                <!-- Decorative Rope-Twist Ring Border -->
+                <circle cx="110" cy="112" r="70.5" fill="none" stroke="#135b78" stroke-width="6.5" />
+                <circle cx="110" cy="112" r="70.5" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-dasharray="4.5 4.5" />
+                <circle cx="110" cy="112" r="66.5" fill="none" stroke="#135b78" stroke-width="1.5" />
+                <!-- Solid Deep Teal-Blue Inner Disc -->
+                <circle cx="110" cy="112" r="66" fill="#135b78" />
+                <!-- Stylized Intertwined White Double-Line "UR" Monogram -->
+                <g clip-path="url(#innerSealClip)" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+                  <!-- Outer U contour -->
+                  <path d="M 65,79 L 76,79 L 76,125 C 76,138 85,146 98,146 C 111,146 120,138 120,125 L 120,73" stroke-width="3.2" />
+                  <!-- Inner U contour -->
+                  <path d="M 70,79 L 70,125 C 70,142 82,152 98,152 C 114,152 126,142 126,125 L 126,79" stroke-width="3.2" />
+                  <!-- R Top Bar & Bowl Outer Contour -->
+                  <path d="M 101,73 L 138,73 C 154,73 163,82 163,95 C 163,107 154,115 140,117 L 163,149 L 154,149 L 131,117 L 123,117" stroke-width="3.2" />
+                  <!-- R Top Bar & Bowl Inner Contour -->
+                  <path d="M 101,79 L 137,79 C 149,79 156,85 156,95 C 156,105 149,111 137,111 L 123,111" stroke-width="3.2" />
+                  <!-- R Inner Diagonal Leg Parallel Line -->
+                  <path d="M 137,116 L 160,149" stroke-width="3.2" />
+                  <!-- R Vertical Stem Accent -->
+                  <path d="M 114,79 L 114,149" stroke-width="2.6" opacity="0.92" />
+                </g>
+              </svg>
+            </div>
+            <!-- Subtle Hover Button to Upload Custom Logo Image -->
+            <label for="logoUploadInput" title="Upload / Swap Official UR Logo Image"
+              class="no-print absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-urGold hover:bg-amber-400 text-urNavyDark shadow-md flex items-center justify-center cursor-pointer transition opacity-90 hover:opacity-100">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </label>
+            <input type="file" id="logoUploadInput" accept="image/*" class="hidden" onchange="handleLogoUpload(event)" />
+          </div>
+
+          <!-- Institutional Hierarchy & Program Title -->
+          <div>
+            <p class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-white leading-tight">
+              UNIVERSITY OF RWANDA
+            </p>
+            <p class="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-amber-300 leading-tight mt-0.5">
+              OFFICE OF THE DEPUTY VICE CHANCELLOR FOR STRATEGIC PLANNING AND ADMINISTRATION
+            </p>
+            <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-wide text-sky-200 leading-tight">
+              OFFICE OF STUDENTS' WELFARE
+            </p>
+            <h1 class="text-sm sm:text-base lg:text-lg font-extrabold tracking-tight text-white mt-1 leading-snug">
+              Monitoring and Evaluation of the First-Year Students' Preparatory (Induction) Program
+            </h1>
+            <div class="mt-1 inline-flex flex-wrap items-center gap-2 text-[11px] sm:text-xs bg-white/10 border border-white/20 px-2.5 py-0.5 rounded-full text-sky-100">
+              <span>Institutional M&amp;E Portal</span>
+              <span class="text-amber-300">|</span>
+              <span>Venue: <strong class="text-white">UR Colleges / Campuses</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Print / PDF Button -->
+        <div class="no-print flex items-center gap-2 self-start lg:self-center">
+          <button type="button" onclick="window.print()"
+            class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-white/25 text-white text-xs font-semibold transition flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-urGold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            <span>Print / Save PDF</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Navigation Tabs -->
+      <nav class="mt-3 pt-2.5 border-t border-white/15 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar" aria-label="Form Navigation">
+        <button type="button" id="navTab-form1" onclick="switchTab('form1')"
+          class="nav-tab shrink-0 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-urGold text-urNavyDark shadow">
+          <span class="px-1.5 py-0.5 text-[10px] rounded bg-urNavy text-white font-extrabold">F1</span>
+          <span>Form 1: Daily M&amp;E Form</span>
+        </button>
+
+        <button type="button" id="navTab-form2" onclick="switchTab('form2')"
+          class="nav-tab shrink-0 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-200 hover:bg-white/10">
+          <span class="px-1.5 py-0.5 text-[10px] rounded bg-white/15 text-white font-bold">F2</span>
+          <span>Form 2: Student Evaluation</span>
+        </button>
+
+        <button type="button" id="navTab-form3" onclick="switchTab('form3')"
+          class="nav-tab shrink-0 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-200 hover:bg-white/10">
+          <span class="px-1.5 py-0.5 text-[10px] rounded bg-white/15 text-white font-bold">F3</span>
+          <span>Form 3: Support Staff Consultation</span>
+        </button>
+
+        <button type="button" id="navTab-data" onclick="switchTab('data')"
+          class="nav-tab shrink-0 ml-auto px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-amber-200 hover:bg-white/10 border border-amber-300/30">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+          </svg>
+          <span>Collected Data &amp; CSV/JSON Export</span>
+          <span id="totalBadge" class="px-2 py-0.5 text-xs font-extrabold rounded-full bg-urGold text-urNavyDark">0</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Real-time Form Progress Strip -->
+    <div id="progressStrip" class="bg-urNavyDark/95 border-t border-white/10">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-1.5 flex items-center gap-3">
+        <span id="progressText" class="text-[11px] font-semibold text-amber-300 whitespace-nowrap">Form 1 Completion: 0%</span>
+        <div class="w-full h-1.5 bg-white/15 rounded-full overflow-hidden">
+          <div id="progressBar" class="h-full bg-urGold transition-all duration-300 rounded-full" style="width: 0%;"></div>
+        </div>
+        <span id="progressCount" class="text-[11px] text-slate-300 whitespace-nowrap hidden sm:inline">0 / 29 required fields</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NON-BLOCKING TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden max-w-sm w-full bg-slate-900 text-white px-4 py-3.5 rounded-xl shadow-2xl border border-slate-700 flex items-start gap-3">
+    <div id="toastIcon" class="shrink-0 mt-0.5 text-urGold">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+    <div class="flex-1 text-xs sm:text-sm">
+      <p id="toastTitle" class="font-bold"></p>
+      <p id="toastMsg" class="text-slate-300 text-xs mt-0.5"></p>
+    </div>
+    <button type="button" onclick="hideToast()" class="text-slate-400 hover:text-white p-1">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- =================================================================== -->
+    <!-- TAB 1: FORM 1 — DAILY MONITORING AND EVALUATION FORM                -->
+    <!-- =================================================================== -->
+    <div id="view-form1" class="tab-view fade-in space-y-6">
+      <!-- Purpose Banner -->
+      <div class="bg-white border-l-4 border-urNavy rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-urNavy bg-amber-100 px-2.5 py-0.5 rounded-md">
+            Form 1 • Daily Monitoring &amp; Evaluation Form
+          </span>
+          <span class="text-xs font-medium text-slate-500">Target: M&amp;E Evaluators / Welfare Officers</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+          <strong class="text-slate-900">Purpose:</strong> To record daily observations on the implementation, quality and effectiveness of induction activities and services. Complete one form for each monitoring visit.
+        </p>
+      </div>
+
+      <form id="form1Element" novalidate class="space-y-6">
+        <!-- Section A: General Information -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5 flex items-center justify-between">
+            <h2 class="text-sm sm:text-base font-bold">A. GENERAL INFORMATION</h2>
+            <span class="text-xs text-amber-300 font-semibold">Required Details</span>
+          </div>
+          <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Campus/location -->
+            <div>
+              <label for="f1_campus" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Campus / Location <span class="text-rose-600">*</span>
+              </label>
+              <select id="f1_campus" required onchange="toggleOtherInput('f1_campus', 'f1_campus_other_wrap'); updateActiveProgress();"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy focus:ring-2 focus:ring-urNavy/20 outline-none">
+                <option value="">-- Select UR Campus --</option>
+                <option value="Nyarugenge">Nyarugenge</option>
+                <option value="Gikondo">Gikondo</option>
+                <option value="Remera">Remera</option>
+                <option value="Rwamagana">Rwamagana</option>
+                <option value="Rukara">Rukara</option>
+                <option value="Nyagatare">Nyagatare</option>
+                <option value="Huye">Huye</option>
+                <option value="Busogo">Busogo</option>
+                <option value="Rusizi">Rusizi</option>
+                <option value="Other">Other</option>
+              </select>
+              <div id="f1_campus_other_wrap" class="hidden mt-2">
+                <input type="text" id="f1_campus_other" placeholder="Specify other campus/location" oninput="updateActiveProgress()"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+            </div>
+
+            <!-- Academic Year / Cohort -->
+            <div>
+              <label for="f1_cohort" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Academic Year / Cohort <span class="text-slate-400 font-normal">(optional)</span>
+              </label>
+              <input type="text" id="f1_cohort" placeholder="e.g., 2026/2027 Intake"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy focus:ring-2 focus:ring-urNavy/20 outline-none" />
+            </div>
+
+            <!-- Date -->
+            <div>
+              <label for="f1_date" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Date <span class="text-rose-600">*</span>
+              </label>
+              <input type="date" id="f1_date" required onchange="updateActiveProgress()"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy focus:ring-2 focus:ring-urNavy/20 outline-none" />
+            </div>
+
+            <!-- Name of evaluator(s) -->
+            <div>
+              <label for="f1_evaluators" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Name of Evaluator(s) <span class="text-rose-600">*</span>
+              </label>
+              <input type="text" id="f1_evaluators" required placeholder="Full name(s) of monitoring officer(s)" oninput="updateActiveProgress()"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy focus:ring-2 focus:ring-urNavy/20 outline-none" />
+            </div>
+
+            <!-- Department/unit(s) visited -->
+            <div>
+              <label for="f1_units" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Department / Unit(s) Visited <span class="text-rose-600">*</span>
+              </label>
+              <input type="text" id="f1_units" required placeholder="e.g., Main Auditorium, Hostels, Clinic, Dining Hall..." oninput="updateActiveProgress()"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy focus:ring-2 focus:ring-urNavy/20 outline-none" />
+            </div>
+
+            <!-- Staff/facilitators consulted -->
+            <div>
+              <label for="f1_staff_consulted" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Staff / Facilitators Consulted <span class="text-slate-400 font-normal">(if available)</span>
+              </label>
+              <input type="text" id="f1_staff_consulted" placeholder="Names / roles consulted"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy focus:ring-2 focus:ring-urNavy/20 outline-none" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section B: Rating Scale Legend Banner -->
+        <section class="sticky top-[116px] sm:top-[128px] z-20 bg-amber-50/95 backdrop-blur-xs border border-amber-300 rounded-2xl p-4 sm:p-5 shadow-md">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <h2 class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-urNavy">
+              B. RATING SCALE LEGEND (1 TO 5 ADEQUACY SCALE)
+            </h2>
+            <span class="text-[11px] font-semibold text-amber-900 bg-amber-200/70 px-2.5 py-0.5 rounded-full">Sticky Reference Bar</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 text-xs">
+            <div class="bg-white border border-amber-200 rounded-xl px-2.5 py-2 font-semibold text-slate-800">
+              <span class="inline-block w-4 text-center font-extrabold text-emerald-700">5</span> = Very good / Fully adequate
+            </div>
+            <div class="bg-white border border-amber-200 rounded-xl px-2.5 py-2 font-semibold text-slate-800">
+              <span class="inline-block w-4 text-center font-extrabold text-urNavy">4</span> = Good / Adequate
+            </div>
+            <div class="bg-white border border-amber-200 rounded-xl px-2.5 py-2 font-semibold text-slate-800">
+              <span class="inline-block w-4 text-center font-extrabold text-urSky">3</span> = Fair / Partly adequate
+            </div>
+            <div class="bg-white border border-amber-200 rounded-xl px-2.5 py-2 font-semibold text-slate-800">
+              <span class="inline-block w-4 text-center font-extrabold text-amber-700">2</span> = Below average / Needs improvement
+            </div>
+            <div class="bg-white border border-amber-200 rounded-xl px-2.5 py-2 font-semibold text-slate-800">
+              <span class="inline-block w-4 text-center font-extrabold text-rose-700">1</span> = Poor / Inadequate
+            </div>
+            <div class="bg-white border border-amber-200 rounded-xl px-2.5 py-2 font-semibold text-slate-700">
+              <span class="inline-block font-extrabold text-slate-600">N/O</span> = Not Observed
+            </div>
+            <div class="bg-white border border-amber-200 rounded-xl px-2.5 py-2 font-semibold text-slate-700">
+              <span class="inline-block font-extrabold text-slate-600">N/A</span> = Not Applicable
+            </div>
+          </div>
+        </section>
+
+        <!-- Section C: Daily Monitoring Checklist (All 11 Areas & 25 Indicators) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-sm sm:text-base font-bold">C. DAILY MONITORING CHECKLIST</h2>
+            <div class="flex flex-wrap items-center gap-2">
+              <span id="f1ChecklistBadge" class="text-xs bg-white/15 px-3 py-1 rounded-full font-semibold">0 / 25 indicators rated</span>
+              <button type="button" onclick="quickFillForm1NA()"
+                class="text-xs bg-urGold hover:bg-amber-400 text-urNavyDark px-3 py-1 rounded-full font-extrabold transition shadow-xs">
+                Quick Fill Remaining as N/A
+              </button>
+            </div>
+          </div>
+          <div id="f1ChecklistContainer" class="divide-y divide-slate-200">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- Section D: Daily Student Feedback -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5">
+            <h2 class="text-sm sm:text-base font-bold">D. DAILY STUDENT FEEDBACK</h2>
+          </div>
+          <div class="p-5 sm:p-6 space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pb-4 border-b border-slate-200">
+              <div>
+                <label for="f1_students_count" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Number of Students Consulted
+                </label>
+                <input type="number" id="f1_students_count" min="0" placeholder="e.g., 25"
+                  class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-urNavy outline-none" />
+              </div>
+
+              <div class="md:col-span-2">
+                <span class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Consultation Method (Tick all applicable)
+                </span>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <label class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-300 bg-slate-50 hover:bg-amber-50 cursor-pointer text-xs sm:text-sm font-medium">
+                    <input type="checkbox" name="f1_consult_method" value="Informal discussion" class="h-4 w-4 text-urNavy rounded" />
+                    <span>Informal discussion</span>
+                  </label>
+                  <label class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-300 bg-slate-50 hover:bg-amber-50 cursor-pointer text-xs sm:text-sm font-medium">
+                    <input type="checkbox" name="f1_consult_method" value="Short interview" class="h-4 w-4 text-urNavy rounded" />
+                    <span>Short interview</span>
+                  </label>
+                  <label class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-300 bg-slate-50 hover:bg-amber-50 cursor-pointer text-xs sm:text-sm font-medium">
+                    <input type="checkbox" name="f1_consult_method" value="Group discussion" class="h-4 w-4 text-urNavy rounded" />
+                    <span>Group discussion</span>
+                  </label>
+                  <label class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-300 bg-slate-50 hover:bg-amber-50 cursor-pointer text-xs sm:text-sm font-medium">
+                    <input type="checkbox" id="f1_consult_other_cb" name="f1_consult_method" value="Other" onchange="toggleCheckboxInput('f1_consult_other_cb', 'f1_consult_other_wrap', 'f1_consult_other_text')" class="h-4 w-4 text-urNavy rounded" />
+                    <span>Other</span>
+                  </label>
+                </div>
+                <div id="f1_consult_other_wrap" class="hidden mt-2.5 max-w-md">
+                  <input type="text" id="f1_consult_other_text" placeholder="Specify other consultation method..."
+                    class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs sm:text-sm focus:border-urNavy outline-none" />
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="f1_d1" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                  1. What did students find most useful today?
+                </label>
+                <textarea id="f1_d1" rows="3" placeholder="Record key student feedback..."
+                  class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+              </div>
+              <div>
+                <label for="f1_d2" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                  2. What information or support do students still need?
+                </label>
+                <textarea id="f1_d2" rows="3" placeholder="Record unmet information or service needs..."
+                  class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+              </div>
+              <div>
+                <label for="f1_d3" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                  3. What challenges or concerns did students raise?
+                </label>
+                <textarea id="f1_d3" rows="3" placeholder="Record challenges or concerns raised..."
+                  class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+              </div>
+              <div>
+                <label for="f1_d4" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                  4. Any feedback from international students or students with disabilities / special needs?
+                </label>
+                <textarea id="f1_d4" rows="3" placeholder="Record specific inclusion or international student feedback..."
+                  class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section E: Issues Identified and Action Required (Dynamic Table) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-sm sm:text-base font-bold">E. ISSUES IDENTIFIED AND ACTION REQUIRED</h2>
+            <button type="button" onclick="addForm1IssueRow()"
+              class="px-3 py-1.5 rounded-xl bg-urGold hover:bg-amber-400 text-urNavyDark text-xs font-extrabold transition shadow-xs">
+              + Add Issue Row
+            </button>
+          </div>
+          <div class="p-4 sm:p-5 overflow-x-auto">
+            <table class="w-full text-left border-collapse min-w-[720px]">
+              <thead>
+                <tr class="bg-slate-100 text-[11px] font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200">
+                  <th class="py-2.5 px-2.5 w-[5%] text-center">#</th>
+                  <th class="py-2.5 px-3 w-[33%]">Issue / Challenge Identified</th>
+                  <th class="py-2.5 px-3 w-[14%]">Urgency</th>
+                  <th class="py-2.5 px-3 w-[25%]">Recommended Action / Responsible Unit</th>
+                  <th class="py-2.5 px-3 w-[17%]">Status / Follow-up</th>
+                  <th class="py-2.5 px-2 w-[6%] text-center">Del</th>
+                </tr>
+              </thead>
+              <tbody id="f1IssuesTbody" class="divide-y divide-slate-200">
+                <!-- Dynamic rows inserted here -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Section F: Daily Summary & Sign-Off -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5">
+            <h2 class="text-sm sm:text-base font-bold">F. DAILY SUMMARY &amp; VERIFICATION SIGN-OFF</h2>
+          </div>
+          <div class="p-5 sm:p-6 space-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label for="f1_sum_achievements" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                  Key achievements / good practices
+                </label>
+                <textarea id="f1_sum_achievements" rows="3" placeholder="Summarize key achievements..."
+                  class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+              </div>
+              <div>
+                <label for="f1_sum_gaps" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                  Main gaps requiring attention
+                </label>
+                <textarea id="f1_sum_gaps" rows="3" placeholder="Summarize main gaps..."
+                  class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+              </div>
+              <div>
+                <label for="f1_sum_escalation" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                  Issues requiring immediate escalation
+                </label>
+                <textarea id="f1_sum_escalation" rows="3" placeholder="Specify any urgent safety, health, or sanitation issues escalated..."
+                  class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+              </div>
+              <div>
+                <label for="f1_sum_priority" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                  Priority recommendation for tomorrow
+                </label>
+                <textarea id="f1_sum_priority" rows="3" placeholder="Specify top priority action for next day..."
+                  class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+              </div>
+            </div>
+
+            <!-- Sign-off Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-slate-200">
+              <div>
+                <label for="f1_eval_sig" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1">
+                  Evaluator's Name &amp; Signature
+                </label>
+                <input type="text" id="f1_eval_sig" placeholder="Full Name / Digital Initials"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+              <div>
+                <label for="f1_eval_sig_date" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1">
+                  Date
+                </label>
+                <input type="date" id="f1_eval_sig_date"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+              <div>
+                <label for="f1_rep_name" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1">
+                  Campus / Unit Representative <span class="text-slate-400 font-normal">(if consulted)</span>
+                </label>
+                <input type="text" id="f1_rep_name" placeholder="Representative Name & Title"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+              <div>
+                <label for="f1_rep_sig" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1">
+                  Representative Signature
+                </label>
+                <input type="text" id="f1_rep_sig" placeholder="Digital Initials / Confirmation"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+            </div>
+
+            <!-- Official Note to Evaluators -->
+            <div class="bg-slate-100 border-l-4 border-urGold rounded-xl p-4 text-xs text-slate-700 leading-relaxed">
+              <strong class="text-urNavy uppercase">Note to Evaluators:</strong> Record factual observations and, where possible, supporting evidence (e.g., attendance records, student feedback, photographs where authorised, service schedules or direct observation). Escalate urgent health, safety, sanitation or accommodation concerns to the responsible campus / University authority immediately rather than waiting for the final report.
+            </div>
+
+            <!-- Submit Bar -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+              <button type="button" onclick="resetForm1(true)"
+                class="px-4 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition">
+                Clear Form 1
+              </button>
+              <button type="submit"
+                class="px-7 py-3.5 rounded-xl bg-urNavy hover:bg-urNavyDark text-white text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                <svg class="w-5 h-5 text-urGold" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Save &amp; Submit Form 1 (Daily M&amp;E)
+              </button>
+            </div>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 2: FORM 2 — END-OF-INDUCTION STUDENT EVALUATION FORM            -->
+    <!-- =================================================================== -->
+    <div id="view-form2" class="tab-view hidden fade-in space-y-6">
+      <!-- Purpose & Privacy Note -->
+      <div class="bg-white border-l-4 border-urSky rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-urNavy bg-sky-100 px-2.5 py-0.5 rounded-md">
+            Form 2 • End-of-Induction Student Evaluation Form
+          </span>
+          <span class="text-xs font-medium text-slate-500">Target Respondents: First-Year Students</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+          <strong class="text-slate-900">Purpose:</strong> To assess students' overall experience, satisfaction and preparedness following the induction. Responses will be used to improve future induction programmes. <span class="font-semibold text-urNavy">Do not write your name unless you wish to be contacted for follow-up.</span>
+        </p>
+      </div>
+
+      <form id="form2Element" novalidate class="space-y-6">
+        <!-- Section A: Respondent Information -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5">
+            <h2 class="text-sm sm:text-base font-bold">A. RESPONDENT INFORMATION</h2>
+          </div>
+          <div class="p-5 sm:p-6 space-y-5">
+            <!-- Campus Radio Pills -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-2">
+                Campus <span class="text-rose-600">*</span>
+              </label>
+              <div class="flex flex-wrap gap-2">
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Nyarugenge" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Nyarugenge</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Gikondo" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Gikondo</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Remera" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Remera</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Rwamagana" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Rwamagana</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Rukara" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Rukara</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Nyagatare" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Nyagatare</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Huye" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Huye</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Busogo" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Busogo</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Rusizi" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Rusizi</span>
+                </label>
+                <label class="pill-radio cursor-pointer">
+                  <input type="radio" name="f2_campus" value="Other" class="sr-only" onchange="toggleForm2CampusOther(); updateActiveProgress();" />
+                  <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Other</span>
+                </label>
+              </div>
+              <div id="f2_campus_other_wrap" class="hidden mt-2.5 max-w-sm">
+                <input type="text" id="f2_campus_other" placeholder="Specify campus..." oninput="updateActiveProgress()"
+                  class="w-full rounded-xl border border-slate-300 px-3.5 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Academic Year / Cohort -->
+              <div>
+                <label for="f2_cohort" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Academic Year / Cohort <span class="text-slate-400 font-normal">(optional)</span>
+                </label>
+                <input type="text" id="f2_cohort" placeholder="e.g., 2026/2027 Intake"
+                  class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-urNavy outline-none" />
+              </div>
+
+              <!-- Programme / School / College -->
+              <div>
+                <label for="f2_programme" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Programme / School / College <span class="text-slate-400 font-normal">(optional)</span>
+                </label>
+                <input type="text" id="f2_programme" placeholder="e.g., CST - Civil Engineering, CASS, CBE, CMHS, CAVM, CE"
+                  class="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-sm focus:border-urNavy outline-none" />
+              </div>
+
+              <!-- Student category -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Student Category <span class="text-rose-600">*</span>
+                </label>
+                <div class="flex flex-wrap gap-2">
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_student_cat" value="Local student" class="sr-only" onchange="toggleForm2ConditionalSections(); updateActiveProgress();" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Local student</span>
+                  </label>
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_student_cat" value="International student" class="sr-only" onchange="toggleForm2ConditionalSections(); updateActiveProgress();" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">International student</span>
+                  </label>
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_student_cat" value="Prefer not to say" class="sr-only" onchange="toggleForm2ConditionalSections(); updateActiveProgress();" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Prefer not to say</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Gender (optional) -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Gender <span class="text-slate-400 font-normal">(optional)</span>
+                </label>
+                <div class="flex flex-wrap gap-2">
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_gender" value="Female" class="sr-only" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Female</span>
+                  </label>
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_gender" value="Male" class="sr-only" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Male</span>
+                  </label>
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_gender" value="Prefer not to say" class="sr-only" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Prefer not to say</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Disability or specific support need -->
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                  Do you have a disability or specific support need you wish to report? <span class="text-slate-400 font-normal">(optional)</span>
+                </label>
+                <div class="flex flex-wrap gap-2">
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_disability" value="Yes" class="sr-only" onchange="toggleForm2ConditionalSections()" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Yes</span>
+                  </label>
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_disability" value="No" class="sr-only" onchange="toggleForm2ConditionalSections()" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">No</span>
+                  </label>
+                  <label class="pill-radio cursor-pointer">
+                    <input type="radio" name="f2_disability" value="Prefer not to say" class="sr-only" onchange="toggleForm2ConditionalSections()" />
+                    <span class="inline-block px-3.5 py-2 rounded-xl border border-slate-300 bg-slate-50 text-xs sm:text-sm font-semibold text-slate-800 transition">Prefer not to say</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Conditional Sub-Card: International Students -->
+            <div id="f2_intl_subcard" class="hidden fade-in bg-sky-50/80 border border-sky-200 rounded-2xl p-4 sm:p-5 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-extrabold uppercase tracking-wider text-urNavy bg-sky-200/70 px-2.5 py-0.5 rounded-md">
+                  International Student Adaptation &amp; Arrival Module (Optional)
+                </span>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <div>
+                  <label for="f2_intl_country" class="block text-xs font-bold text-slate-800 mb-1">
+                    Country of Origin / Home Institution
+                  </label>
+                  <input type="text" id="f2_intl_country" placeholder="e.g., Kenya, Uganda, DRC, Burundi..."
+                    class="w-full rounded-xl border border-sky-200 bg-white px-3 py-2 text-sm focus:border-urSky outline-none" />
+                </div>
+                <div>
+                  <label for="f2_intl_immigration" class="block text-xs font-bold text-slate-800 mb-1">
+                    Immigration, Registration &amp; Arrival Support Experience
+                  </label>
+                  <input type="text" id="f2_intl_immigration" placeholder="How was airport/campus reception and registration?"
+                    class="w-full rounded-xl border border-sky-200 bg-white px-3 py-2 text-sm focus:border-urSky outline-none" />
+                </div>
+                <div class="md:col-span-2">
+                  <label for="f2_intl_integration" class="block text-xs font-bold text-slate-800 mb-1">
+                    Language, Cultural Integration &amp; Orientation Clarity Feedback
+                  </label>
+                  <textarea id="f2_intl_integration" rows="2" placeholder="Share any specific adaptation feedback or support needed..."
+                    class="w-full rounded-xl border border-sky-200 bg-white p-2.5 text-sm focus:border-urSky outline-none"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Conditional Sub-Card: Disability / Special Needs -->
+            <div id="f2_disability_subcard" class="hidden fade-in bg-amber-50/80 border border-amber-200 rounded-2xl p-4 sm:p-5 space-y-3">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-extrabold uppercase tracking-wider text-urNavy bg-amber-200/70 px-2.5 py-0.5 rounded-md">
+                  Accessibility &amp; Reasonable Accommodation Follow-up (Optional)
+                </span>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <div>
+                  <label for="f2_disab_met" class="block text-xs font-bold text-slate-800 mb-1">
+                    Were your accommodation, mobility, or learning support needs met?
+                  </label>
+                  <select id="f2_disab_met" class="w-full rounded-xl border border-amber-200 bg-white px-3 py-2 text-sm focus:border-urNavy outline-none">
+                    <option value="">-- Select --</option>
+                    <option value="Fully met">Fully met</option>
+                    <option value="Partially met">Partially met</option>
+                    <option value="Not met">Not met</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="f2_disab_details" class="block text-xs font-bold text-slate-800 mb-1">
+                    Specific Support Needed / Accessibility Feedback
+                  </label>
+                  <input type="text" id="f2_disab_details" placeholder="e.g., ground-floor room, accessible washroom, assistive learning..."
+                    class="w-full rounded-xl border border-amber-200 bg-white px-3 py-2 text-sm focus:border-urNavy outline-none" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section B: Overall Evaluation (11 Statements) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-sm sm:text-base font-bold">B. OVERALL EVALUATION</h2>
+              <p class="text-xs text-amber-200 mt-1">
+                Scale: <strong>5</strong> = Strongly agree &nbsp;|&nbsp; <strong>4</strong> = Agree &nbsp;|&nbsp; <strong>3</strong> = Not sure &nbsp;|&nbsp; <strong>2</strong> = Disagree &nbsp;|&nbsp; <strong>1</strong> = Strongly disagree &nbsp;|&nbsp; <strong>N/A</strong> = Not applicable
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="f2OverallCountBadge" class="text-xs bg-white/15 px-3 py-1 rounded-full font-semibold">0 / 11 rated</span>
+              <span id="f2OverallMeanBadge" class="text-xs bg-urGold text-urNavyDark px-3 py-1 rounded-full font-extrabold">Mean: —</span>
+            </div>
+          </div>
+          <div id="f2OverallContainer" class="divide-y divide-slate-200">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- Section C: Student Welfare and Services (All 7 Distinct Rows) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-sm sm:text-base font-bold">C. STUDENT WELFARE AND SERVICES</h2>
+              <p class="text-xs text-sky-200 mt-1">
+                Scale: <strong>5</strong> = Very satisfied &nbsp;|&nbsp; <strong>4</strong> = Satisfied &nbsp;|&nbsp; <strong>3</strong> = Neutral &nbsp;|&nbsp; <strong>2</strong> = Dissatisfied &nbsp;|&nbsp; <strong>1</strong> = Very dissatisfied &nbsp;|&nbsp; <strong>N/A</strong> = Not used / not applicable
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="f2ServicesCountBadge" class="text-xs bg-white/15 px-3 py-1 rounded-full font-semibold">0 / 7 rated</span>
+              <span id="f2ServicesMeanBadge" class="text-xs bg-urSky text-white px-3 py-1 rounded-full font-extrabold">Mean: —</span>
+            </div>
+          </div>
+          <div id="f2ServicesContainer" class="divide-y divide-slate-200">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- Section D: Open-Ended Feedback (5 Questions + Optional Follow-up Contact) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5">
+            <h2 class="text-sm sm:text-base font-bold">D. OPEN-ENDED FEEDBACK</h2>
+          </div>
+          <div class="p-5 sm:p-6 space-y-4">
+            <div>
+              <label for="f2_q1" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                1. What was the most useful part of the induction?
+              </label>
+              <textarea id="f2_q1" rows="3" placeholder="Share what you found most valuable..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f2_q2" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                2. What important information or topic was missing or insufficiently covered?
+              </label>
+              <textarea id="f2_q2" rows="3" placeholder="Specify topics or guidance you needed..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f2_q3" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                3. What challenges did you experience regarding accommodation, meals, health, hygiene, transport or other services?
+              </label>
+              <textarea id="f2_q3" rows="3" placeholder="Describe any welfare or service challenges..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f2_q4" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                4. What should UR continue doing in future induction programmes?
+              </label>
+              <textarea id="f2_q4" rows="3" placeholder="Highlight practices that worked well..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f2_q5" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                5. What are your top suggestions for improving the next induction?
+              </label>
+              <textarea id="f2_q5" rows="3" placeholder="Share your top recommendations..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+
+            <!-- Optional Follow-up Contact -->
+            <div class="pt-4 border-t border-slate-200 bg-slate-50 rounded-xl p-4">
+              <label for="f2_followup_contact" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1">
+                Optional Name / Phone / Email <span class="text-slate-500 font-normal">(Only if you wish to be contacted for follow-up)</span>
+              </label>
+              <input type="text" id="f2_followup_contact" placeholder="Leave blank to remain completely anonymous"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm focus:border-urNavy outline-none" />
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+              <button type="button" onclick="resetForm2(true)"
+                class="px-4 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition">
+                Clear Form 2
+              </button>
+              <button type="submit"
+                class="px-7 py-3.5 rounded-xl bg-urNavy hover:bg-urNavyDark text-white text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                <svg class="w-5 h-5 text-urGold" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Submit Form 2 (Student Evaluation)
+              </button>
+            </div>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 3: FORM 3 — CLOSING CONSULTATION WITH SUPPORT STAFF             -->
+    <!-- =================================================================== -->
+    <div id="view-form3" class="tab-view hidden fade-in space-y-6">
+      <!-- Purpose Banner -->
+      <div class="bg-white border-l-4 border-urGold rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+          <span class="text-xs font-extrabold uppercase tracking-wider text-urNavy bg-amber-100 px-2.5 py-0.5 rounded-md">
+            Form 3 • Closing Consultation with Support Staff
+          </span>
+          <span class="text-xs font-medium text-slate-500">Completed during closing consultation</span>
+        </div>
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+          <strong class="text-slate-900">Target Respondents:</strong> Support staff, campus representatives, service providers and other personnel involved in implementing the induction. To be completed during the closing consultation.
+        </p>
+      </div>
+
+      <form id="form3Element" novalidate class="space-y-6">
+        <!-- Section A: Consultation Details -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5">
+            <h2 class="text-sm sm:text-base font-bold">A. CONSULTATION DETAILS</h2>
+          </div>
+          <div class="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Campus -->
+            <div>
+              <label for="f3_campus" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Campus <span class="text-rose-600">*</span>
+              </label>
+              <select id="f3_campus" required onchange="toggleOtherInput('f3_campus', 'f3_campus_other_wrap'); updateActiveProgress();"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy outline-none">
+                <option value="">-- Select UR Campus --</option>
+                <option value="Nyarugenge">Nyarugenge</option>
+                <option value="Gikondo">Gikondo</option>
+                <option value="Remera">Remera</option>
+                <option value="Rwamagana">Rwamagana</option>
+                <option value="Rukara">Rukara</option>
+                <option value="Nyagatare">Nyagatare</option>
+                <option value="Huye">Huye</option>
+                <option value="Busogo">Busogo</option>
+                <option value="Rusizi">Rusizi</option>
+                <option value="Other">Other</option>
+              </select>
+              <div id="f3_campus_other_wrap" class="hidden mt-2">
+                <input type="text" id="f3_campus_other" placeholder="Specify campus..." oninput="updateActiveProgress()"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+            </div>
+
+            <!-- Academic Year / Cohort -->
+            <div>
+              <label for="f3_cohort" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Academic Year / Cohort <span class="text-slate-400 font-normal">(optional)</span>
+              </label>
+              <input type="text" id="f3_cohort" placeholder="e.g., 2026/2027 Intake"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy outline-none" />
+            </div>
+
+            <!-- Date -->
+            <div>
+              <label for="f3_date" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Date <span class="text-rose-600">*</span>
+              </label>
+              <input type="date" id="f3_date" required onchange="updateActiveProgress()"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy outline-none" />
+            </div>
+
+            <!-- Unit / department -->
+            <div>
+              <label for="f3_unit" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Unit / Department <span class="text-rose-600">*</span>
+              </label>
+              <input type="text" id="f3_unit" required placeholder="e.g., Students' Welfare, Catering, Estates, Clinic" oninput="updateActiveProgress()"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy outline-none" />
+            </div>
+
+            <!-- Facilitator / evaluator -->
+            <div>
+              <label for="f3_facilitator" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Facilitator / Evaluator <span class="text-rose-600">*</span>
+              </label>
+              <input type="text" id="f3_facilitator" required placeholder="Name of consultation facilitator" oninput="updateActiveProgress()"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy outline-none" />
+            </div>
+
+            <!-- Number of staff consulted -->
+            <div>
+              <label for="f3_staff_count" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Number of Staff Consulted
+              </label>
+              <input type="number" id="f3_staff_count" min="1" placeholder="e.g., 12"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy outline-none" />
+            </div>
+
+            <!-- Roles / units represented -->
+            <div>
+              <label for="f3_roles_represented" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1.5">
+                Roles / Units Represented
+              </label>
+              <input type="text" id="f3_roles_represented" placeholder="e.g., Nurses, Wardens, Restaurant Mgrs, Sports Officers"
+                class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-urNavy outline-none" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Section B: Staff Reflection and Service Delivery (All 7 Questions) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-sm sm:text-base font-bold">B. STAFF REFLECTION AND SERVICE DELIVERY</h2>
+            <span id="f3ReflectionBadge" class="text-xs bg-white/15 px-3 py-1 rounded-full font-semibold">0 / 7 answered</span>
+          </div>
+          <div class="p-5 sm:p-6 space-y-5">
+            <div>
+              <label for="f3_q1" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                1. Which induction activities or services were implemented successfully? <span class="text-rose-600">*</span>
+              </label>
+              <textarea id="f3_q1" rows="3" oninput="updateActiveProgress()" placeholder="Record key points raised..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f3_q2" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                2. What operational, staffing, logistical or communication challenges were experienced? <span class="text-rose-600">*</span>
+              </label>
+              <textarea id="f3_q2" rows="3" oninput="updateActiveProgress()" placeholder="Record operational, staffing, logistical, or communication challenges..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f3_q3" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                3. Were resources, facilities and information provided in time and in adequate quantity? Explain. <span class="text-rose-600">*</span>
+              </label>
+              <textarea id="f3_q3" rows="3" oninput="updateActiveProgress()" placeholder="Explain timeliness and adequacy of resources, facilities, and information..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f3_q4" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                4. What issues were raised by students, and how were they addressed?
+              </label>
+              <textarea id="f3_q4" rows="3" oninput="updateActiveProgress()" placeholder="Summarize student issues and how campus teams resolved them..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f3_q5" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                5. What improvements are needed in health services, meals, accommodation, hygiene and sanitation, and disability support?
+              </label>
+              <textarea id="f3_q5" rows="3" oninput="updateActiveProgress()" placeholder="Detail improvements across welfare service areas..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f3_q6" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                6. What coordination or communication improvements are needed between departments / units?
+              </label>
+              <textarea id="f3_q6" rows="3" oninput="updateActiveProgress()" placeholder="Detail inter-departmental coordination needs..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+            <div>
+              <label for="f3_q7" class="block text-xs sm:text-sm font-bold text-slate-900 mb-1.5">
+                7. What should UR management prioritise before the next induction? <span class="text-rose-600">*</span>
+              </label>
+              <textarea id="f3_q7" rows="3" oninput="updateActiveProgress()" placeholder="Identify top management priorities prior to the next cohort..."
+                class="w-full rounded-xl border border-slate-300 p-3 text-sm focus:border-urNavy outline-none"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section C: Recommendations and Follow-Up (Dynamic Table + Sign-Off) -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="bg-urNavy text-white px-5 py-3.5 flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-sm sm:text-base font-bold">C. RECOMMENDATIONS AND FOLLOW-UP</h2>
+            <button type="button" onclick="addForm3RecRow()"
+              class="px-3 py-1.5 rounded-xl bg-urGold hover:bg-amber-400 text-urNavyDark text-xs font-extrabold transition shadow-xs">
+              + Add Recommendation Row
+            </button>
+          </div>
+          <div class="p-5 sm:p-6 space-y-5">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse min-w-[720px]">
+                <thead>
+                  <tr class="bg-slate-100 text-[11px] font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200">
+                    <th class="py-2.5 px-2.5 w-[5%] text-center">#</th>
+                    <th class="py-2.5 px-3 w-[35%]">Recommendation / Action</th>
+                    <th class="py-2.5 px-3 w-[22%]">Responsible Unit (if known)</th>
+                    <th class="py-2.5 px-3 w-[14%]">Priority</th>
+                    <th class="py-2.5 px-3 w-[18%]">Proposed Timeframe</th>
+                    <th class="py-2.5 px-2 w-[6%] text-center">Del</th>
+                  </tr>
+                </thead>
+                <tbody id="f3RecsTbody" class="divide-y divide-slate-200">
+                  <!-- Dynamic rows inserted here -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Sign-off Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-slate-200">
+              <div>
+                <label for="f3_names_rep" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1">
+                  Names / Units Represented <span class="text-slate-400 font-normal">(optional)</span>
+                </label>
+                <input type="text" id="f3_names_rep" placeholder="Participants list or units"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+              <div>
+                <label for="f3_fac_sig" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1">
+                  Facilitator's Name and Signature
+                </label>
+                <input type="text" id="f3_fac_sig" placeholder="Full Name / Digital Signature"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+              <div>
+                <label for="f3_sig_date" class="block text-xs font-bold uppercase tracking-wide text-slate-700 mb-1">
+                  Date
+                </label>
+                <input type="date" id="f3_sig_date"
+                  class="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm focus:border-urNavy outline-none" />
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+              <button type="button" onclick="resetForm3(true)"
+                class="px-4 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-sm font-semibold transition">
+                Clear Form 3
+              </button>
+              <button type="submit"
+                class="px-7 py-3.5 rounded-xl bg-urNavy hover:bg-urNavyDark text-white text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                <svg class="w-5 h-5 text-urGold" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Save &amp; Submit Form 3 (Closing Consultation)
+              </button>
+            </div>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- TAB 4: COLLECTED DATA & CSV/JSON EXPORT REPOSITORY                  -->
+    <!-- =================================================================== -->
+    <div id="view-data" class="tab-view hidden fade-in space-y-6">
+      <!-- Export Toolbar & KPI Summary -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6 space-y-5">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-urSky">M&amp;E Statistical Data Hub</span>
+            <h2 class="text-lg sm:text-xl font-extrabold text-urNavy mt-0.5">Collected Data Repository &amp; SPSS / Excel Export</h2>
+            <p class="text-xs text-slate-500 mt-1">
+              All submissions across Form 1, Form 2, and Form 3 are stored persistently in browser <code class="bg-slate-100 px-1.5 py-0.5 rounded">localStorage</code> for reliable offline/online field collection.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" onclick="loadSampleDemoData()"
+              class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-amber-300 text-xs font-bold shadow-xs transition flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <span>Load Sample Demo Data</span>
+            </button>
+            <button type="button" onclick="exportFormCSV('form1')"
+              class="px-3.5 py-2.5 rounded-xl bg-urNavy hover:bg-urNavyDark text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5">
+              <span>Export Form 1 CSV</span>
+            </button>
+            <button type="button" onclick="exportFormCSV('form2')"
+              class="px-3.5 py-2.5 rounded-xl bg-urSky hover:bg-sky-700 text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5">
+              <span>Export Form 2 CSV</span>
+            </button>
+            <button type="button" onclick="exportFormCSV('form3')"
+              class="px-3.5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold shadow-xs transition flex items-center gap-1.5">
+              <span>Export Form 3 CSV</span>
+            </button>
+            <button type="button" onclick="exportCompleteJSON()"
+              class="px-3.5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-urNavyDark text-xs font-extrabold shadow-xs transition flex items-center gap-1.5">
+              <span>Export Complete Backup (JSON)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Summary Cards -->
+        <div id="kpiCardsContainer" class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-4 border-t border-slate-200">
+          <!-- Populated dynamically -->
+        </div>
+
+        <!-- Campus & Cohort Filter Controls -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+          <div>
+            <label for="filterCampusSelect" class="block text-[11px] font-bold uppercase tracking-wide text-slate-600 mb-1">Filter by Campus</label>
+            <select id="filterCampusSelect" onchange="renderDataDashboard()"
+              class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs sm:text-sm text-slate-800 focus:border-urNavy outline-none">
+              <option value="all">All Campuses</option>
+            </select>
+          </div>
+          <div>
+            <label for="filterCohortSelect" class="block text-[11px] font-bold uppercase tracking-wide text-slate-600 mb-1">Filter by Academic Year / Cohort</label>
+            <select id="filterCohortSelect" onchange="renderDataDashboard()"
+              class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs sm:text-sm text-slate-800 focus:border-urNavy outline-none">
+              <option value="all">All Cohorts / Academic Years</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Campus Breakdown Pills & Live Analytics Bars -->
+        <div id="campusBreakdownContainer" class="pt-3 border-t border-slate-100 space-y-3">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Filter Bar & Clear Confirmation Banner -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:p-5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button type="button" onclick="setDataFormFilter('all')" id="filterBtn-all"
+              class="data-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-urNavy text-white transition">
+              All Forms
+            </button>
+            <button type="button" onclick="setDataFormFilter('form1')" id="filterBtn-form1"
+              class="data-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+              Form 1 (Daily)
+            </button>
+            <button type="button" onclick="setDataFormFilter('form2')" id="filterBtn-form2"
+              class="data-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+              Form 2 (Students)
+            </button>
+            <button type="button" onclick="setDataFormFilter('form3')" id="filterBtn-form3"
+              class="data-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
+              Form 3 (Staff)
+            </button>
+          </div>
+
+          <button type="button" onclick="promptClearData()"
+            class="px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 text-xs font-bold transition">
+            Clear All Stored Records
+          </button>
+        </div>
+
+        <div id="clearConfirmBanner" class="hidden bg-rose-50 border border-rose-300 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <p class="text-xs font-semibold text-rose-900">
+            Are you sure you want to permanently delete all locally stored M&amp;E records? Please export a CSV/JSON backup first.
+          </p>
+          <div class="flex items-center gap-2 shrink-0">
+            <button type="button" onclick="document.getElementById('clearConfirmBanner').classList.add('hidden')"
+              class="px-3 py-1.5 rounded-lg bg-white border border-slate-300 text-slate-700 text-xs font-bold">
+              Cancel
+            </button>
+            <button type="button" onclick="confirmClearData()"
+              class="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold">
+              Yes, Delete All
+            </button>
+          </div>
+        </div>
+
+        <!-- Stored Records Table -->
+        <div class="overflow-x-auto border border-slate-200 rounded-xl">
+          <table class="w-full text-left border-collapse min-w-[680px]">
+            <thead>
+              <tr class="bg-slate-100 text-[11px] font-bold uppercase tracking-wider text-slate-700 border-b border-slate-200">
+                <th class="py-3 px-4">Record ID</th>
+                <th class="py-3 px-4">Instrument</th>
+                <th class="py-3 px-4">Campus</th>
+                <th class="py-3 px-4">Cohort</th>
+                <th class="py-3 px-4">Date</th>
+                <th class="py-3 px-4">Summary Details</th>
+                <th class="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="recordsTableBody" class="divide-y divide-slate-200 text-xs sm:text-sm">
+              <!-- Populated dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- RECORD INSPECTION MODAL -->
+  <div id="inspectModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden">
+      <div class="bg-urNavy text-white px-5 py-3.5 flex items-center justify-between gap-2">
+        <h3 id="inspectModalTitle" class="text-sm sm:text-base font-bold truncate">Record Details</h3>
+        <button type="button" onclick="closeInspectModal()" class="text-slate-300 hover:text-white p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div id="inspectModalBody" class="p-5 overflow-y-auto space-y-2 flex-1">
+        <!-- Populated dynamically -->
+      </div>
+      <div class="bg-slate-50 border-t border-slate-200 px-5 py-3 flex items-center justify-between gap-2">
+        <button type="button" onclick="window.print()" class="px-4 py-2 rounded-xl border border-slate-300 bg-white text-slate-800 text-xs font-bold hover:bg-slate-100">
+          Print Record
+        </button>
+        <button type="button" onclick="closeInspectModal()" class="px-4 py-2 rounded-xl bg-urNavy text-white text-xs font-bold hover:bg-urNavyDark">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-urNavyDark text-slate-300 border-t-2 border-urGold mt-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+      <p class="font-semibold text-white">University of Rwanda • Office of the DVC for Strategic Planning &amp; Administration • Office of Students' Welfare</p>
+      <p class="text-amber-300">First-Year Preparatory (Induction) Program M&amp;E Portal</p>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // DATA DEFINITIONS (EXACT INDICATORS & STATEMENTS FROM UR M&E FORMS)
+    // =========================================================================
+    const FORM1_AREAS = [
+      {
+        areaNo: 1,
+        areaTitle: "1. Attendance and participation",
+        indicators: [
+          { id: "c1_1", text: "Attendance is recorded and participation is regular." },
+          { id: "c1_2", text: "Students actively participate, ask questions and engage in activities." }
+        ]
+      },
+      {
+        areaNo: 2,
+        areaTitle: "2. Preparedness and information",
+        indicators: [
+          { id: "c2_1", text: "Activities help students understand university life and academic expectations." },
+          { id: "c2_2", text: "Students receive clear information on UR services, structures and available support." }
+        ]
+      },
+      {
+        areaNo: 3,
+        areaTitle: "3. Policies, rules and regulations",
+        indicators: [
+          { id: "c3_1", text: "Relevant UR policies, rules, regulations and student responsibilities are explained." },
+          { id: "c3_2", text: "Students have opportunities to ask questions and clarify procedures." }
+        ]
+      },
+      {
+        areaNo: 4,
+        areaTitle: "4. Teaching, resources and support",
+        indicators: [
+          { id: "c4_1", text: "Facilitators communicate clearly and sessions are well organised." },
+          { id: "c4_2", text: "Learning materials, facilities and other resources are adequate and accessible." }
+        ]
+      },
+      {
+        areaNo: 5,
+        areaTitle: "5. Clinical / health services",
+        indicators: [
+          { id: "c5_1", text: "Health personnel and basic health support are available during induction." },
+          { id: "c5_2", text: "First-aid supplies / medicines and emergency response arrangements are available." },
+          { id: "c5_3", text: "A standby vehicle or other reliable emergency transport arrangement is available." }
+        ]
+      },
+      {
+        areaNo: 6,
+        areaTitle: "6. Restaurant services",
+        indicators: [
+          { id: "c6_1", text: "Breakfast, lunch and supper (where scheduled) are served on time." },
+          { id: "c6_2", text: "Meals are adequate, well prepared and of acceptable quality." }
+        ]
+      },
+      {
+        areaNo: 7,
+        areaTitle: "7. Hostel allocation and conditions",
+        indicators: [
+          { id: "c7_1", text: "Accommodation is reasonably close to campus and suitable for students." },
+          { id: "c7_2", text: "Rooms are adequate in relation to the number of students accommodated." },
+          { id: "c7_3", text: "Water, electricity, ventilation and clean floors are available." }
+        ]
+      },
+      {
+        areaNo: 8,
+        areaTitle: "8. Hostel hygiene and sanitation",
+        indicators: [
+          { id: "c8_1", text: "Water is clean and sufficiently available; toilets are clean and usable." },
+          { id: "c8_2", text: "Hostel surroundings are clean and suitable for human habitation." }
+        ]
+      },
+      {
+        areaNo: 9,
+        areaTitle: "9. Restaurant hygiene and sanitation",
+        indicators: [
+          { id: "c9_1", text: "Handwashing water, clean tables, chairs, floors and eating utensils are available." },
+          { id: "c9_2", text: "Kitchen, food-service areas and staff maintain appropriate cleanliness." },
+          { id: "c9_3", text: "The restaurant premises appear free from visible contamination." }
+        ]
+      },
+      {
+        areaNo: 10,
+        areaTitle: "10. Disability and special needs",
+        indicators: [
+          { id: "c10_1", text: "Students with disabilities / special needs are identified and consulted appropriately." },
+          { id: "c10_2", text: "Suitable rooms, toilets and other reasonable support arrangements are provided." }
+        ]
+      },
+      {
+        areaNo: 11,
+        areaTitle: "11. Overall service delivery",
+        indicators: [
+          { id: "c11_1", text: "Support staff are available, responsive, respectful and helpful to students." },
+          { id: "c11_2", text: "Students know where and how to seek assistance or report a concern." }
+        ]
+      }
+    ];
+
+    const FORM2_OVERALL_STATEMENTS = [
+      { id: "b1", no: 1, text: "The induction programme was well organised." },
+      { id: "b2", no: 2, text: "The programme activities were relevant to my needs as a first-year student." },
+      { id: "b3", no: 3, text: "I received clear information about the University of Rwanda and its services." },
+      { id: "b4", no: 4, text: "I understand the academic expectations and responsibilities of university students." },
+      { id: "b5", no: 5, text: "I have a better understanding of UR policies, rules and regulations." },
+      { id: "b6", no: 6, text: "I know where to seek academic, administrative and student-welfare support." },
+      { id: "b7", no: 7, text: "The facilitators / presenters communicated clearly and encouraged participation." },
+      { id: "b8", no: 8, text: "The sessions provided adequate opportunities to ask questions and receive answers." },
+      { id: "b9", no: 9, text: "The learning materials, facilities and resources were adequate." },
+      { id: "b10", no: 10, text: "The induction has increased my confidence to begin university life." },
+      { id: "b11", no: 11, text: "Overall, I am satisfied with the induction programme." }
+    ];
+
+    const FORM2_SERVICES = [
+      { id: "s1", no: 1, label: "Health / clinical services and emergency support" },
+      { id: "s2", no: 2, label: "Meals: availability, timing, quantity and quality" },
+      { id: "s3", no: 3, label: "Hostel allocation, location and room conditions" },
+      { id: "s4", no: 4, label: "Hostel water, electricity and sanitation" },
+      { id: "s5", no: 5, label: "Restaurant cleanliness, handwashing and eating facilities" },
+      { id: "s6", no: 6, label: "Support for students with disabilities / special needs" },
+      { id: "s7", no: 7, label: "Helpfulness and responsiveness of support staff" }
+    ];
+
+    const STORAGE_KEY = "ur_induction_me_database_v1";
+    const LOGO_STORAGE_KEY = "ur_induction_custom_logo";
+    const CUSTOM_CAMPUSES_KEY = "ur_induction_custom_campuses_v1";
+    let currentTab = "form1";
+    let currentDataFilter = "all";
+
+    // =========================================================================
+    // INITIALIZATION
+    // =========================================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      restoreSavedLogo();
+      syncCustomCampusesToSelectors();
+      setDefaultDates();
+      renderForm1Checklist();
+      renderForm2Overall();
+      renderForm2Services();
+      addForm1IssueRow();
+      addForm3RecRow();
+      updateTotalBadge();
+      updateActiveProgress();
+
+      document.getElementById("form1Element").addEventListener("submit", handleForm1Submit);
+      document.getElementById("form2Element").addEventListener("submit", handleForm2Submit);
+      document.getElementById("form3Element").addEventListener("submit", handleForm3Submit);
+    });
+
+    function setDefaultDates() {
+      const today = new Date().toISOString().split("T")[0];
+      ["f1_date", "f1_eval_sig_date", "f3_date", "f3_sig_date"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && !el.value) el.value = today;
+      });
+    }
+
+    function getCustomCampuses() {
+      try {
+        const raw = localStorage.getItem(CUSTOM_CAMPUSES_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function registerCustomCampus(campusName) {
+      const trimmed = (campusName || "").trim();
+      const standard = ["Nyarugenge", "Gikondo", "Remera", "Rwamagana", "Rukara", "Nyagatare", "Huye", "Busogo", "Rusizi", "Other", ""];
+      if (!trimmed || standard.some(s => s.toLowerCase() === trimmed.toLowerCase())) return;
+      const custom = getCustomCampuses();
+      if (!custom.some(c => c.toLowerCase() === trimmed.toLowerCase())) {
+        custom.push(trimmed);
+        try {
+          localStorage.setItem(CUSTOM_CAMPUSES_KEY, JSON.stringify(custom));
+        } catch (e) {}
+        syncCustomCampusesToSelectors();
+      }
+    }
+
+    function syncCustomCampusesToSelectors() {
+      const custom = getCustomCampuses();
+      ["f1_campus", "f3_campus"].forEach(selId => {
+        const sel = document.getElementById(selId);
+        if (!sel) return;
+        const otherOpt = sel.querySelector('option[value="Other"]');
+        custom.forEach(c => {
+          if (!Array.from(sel.options).some(o => o.value === c)) {
+            const opt = document.createElement("option");
+            opt.value = c;
+            opt.textContent = `${c} (Custom)`;
+            sel.insertBefore(opt, otherOpt);
+          }
+        });
+      });
+    }
+
+    function handleLogoUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const dataUrl = e.target.result;
+        applyCustomLogo(dataUrl);
+        try {
+          localStorage.setItem(LOGO_STORAGE_KEY, dataUrl);
+        } catch (err) {
+          // Ignore storage quota if image is very large
+        }
+        showToast("Logo Updated", "Official University of Rwanda logo image applied to header.", "success");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function applyCustomLogo(dataUrl) {
+      const img = document.getElementById("customLogoImg");
+      const svg = document.getElementById("defaultUrLogoSvg");
+      img.src = dataUrl;
+      img.classList.remove("hidden");
+      svg.classList.add("hidden");
+    }
+
+    function restoreSavedLogo() {
+      try {
+        const saved = localStorage.getItem(LOGO_STORAGE_KEY);
+        if (saved) applyCustomLogo(saved);
+      } catch (e) {
+        // Fallback to built-in vector UR seal
+      }
+    }
+
+    // =========================================================================
+    // TAB SWITCHING & PROGRESS BAR
+    // =========================================================================
+    function switchTab(tabId) {
+      currentTab = tabId;
+      document.querySelectorAll(".tab-view").forEach(el => el.classList.add("hidden"));
+      const targetView = document.getElementById(`view-${tabId}`);
+      if (targetView) {
+        targetView.classList.remove("hidden");
+      }
+
+      // Update Tab Buttons
+      document.querySelectorAll(".nav-tab").forEach(btn => {
+        btn.className = "nav-tab shrink-0 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-200 hover:bg-white/10";
+        const badge = btn.querySelector("span:first-child");
+        if (badge && badge.textContent.startsWith("F")) {
+          badge.className = "px-1.5 py-0.5 text-[10px] rounded bg-white/15 text-white font-bold";
+        }
+      });
+
+      const activeBtn = document.getElementById(`navTab-${tabId}`);
+      if (activeBtn) {
+        if (tabId === "data") {
+          activeBtn.className = "nav-tab shrink-0 ml-auto px-3.5 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition flex items-center gap-2 bg-urGold text-urNavyDark shadow";
+          document.getElementById("progressStrip").classList.add("hidden");
+          renderDataDashboard();
+        } else {
+          activeBtn.className = "nav-tab shrink-0 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-urGold text-urNavyDark shadow";
+          const badge = activeBtn.querySelector("span:first-child");
+          if (badge) badge.className = "px-1.5 py-0.5 text-[10px] rounded bg-urNavy text-white font-extrabold";
+          document.getElementById("progressStrip").classList.remove("hidden");
+          updateActiveProgress();
+        }
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateActiveProgress() {
+      let total = 0;
+      let filled = 0;
+      let label = "Form 1";
+
+      if (currentTab === "form1") {
+        label = "Form 1 (Daily M&E)";
+        const indicatorCount = FORM1_AREAS.reduce((acc, a) => acc + a.indicators.length, 0);
+        total = 4 + indicatorCount; // Campus, Date, Evaluators, Units + 25 checklist indicators
+        if (document.getElementById("f1_campus").value) filled++;
+        if (document.getElementById("f1_date").value) filled++;
+        if (document.getElementById("f1_evaluators").value.trim()) filled++;
+        if (document.getElementById("f1_units").value.trim()) filled++;
+
+        let ratedIndicators = 0;
+        FORM1_AREAS.forEach(area => {
+          let areaRated = 0;
+          area.indicators.forEach(ind => {
+            if (document.querySelector(`input[name="f1_${ind.id}"]:checked`)) {
+              filled++;
+              ratedIndicators++;
+              areaRated++;
+            }
+          });
+          const areaBadge = document.getElementById(`f1_area_badge_${area.areaNo}`);
+          if (areaBadge) {
+            areaBadge.textContent = `${areaRated}/${area.indicators.length} rated`;
+            areaBadge.className = areaRated === area.indicators.length
+              ? "text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800"
+              : "text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white border border-slate-300 text-slate-600";
+          }
+        });
+        const clBadge = document.getElementById("f1ChecklistBadge");
+        if (clBadge) clBadge.textContent = `${ratedIndicators} / ${indicatorCount} indicators rated`;
+      } else if (currentTab === "form2") {
+        label = "Form 2 (Student Evaluation)";
+        total = 2 + 11 + 7; // Campus, Student Cat + 11 overall + 7 welfare services
+        if (document.querySelector(`input[name="f2_campus"]:checked`)) filled++;
+        if (document.querySelector(`input[name="f2_student_cat"]:checked`)) filled++;
+
+        let bRated = 0, bSum = 0, bNumCount = 0;
+        FORM2_OVERALL_STATEMENTS.forEach(st => {
+          const chk = document.querySelector(`input[name="f2_${st.id}"]:checked`);
+          if (chk) {
+            filled++;
+            bRated++;
+            const num = Number(chk.value);
+            if (!isNaN(num)) { bSum += num; bNumCount++; }
+          }
+        });
+
+        let cRated = 0, cSum = 0, cNumCount = 0;
+        FORM2_SERVICES.forEach(sv => {
+          const chk = document.querySelector(`input[name="f2_${sv.id}"]:checked`);
+          if (chk) {
+            filled++;
+            cRated++;
+            const num = Number(chk.value);
+            if (!isNaN(num)) { cSum += num; cNumCount++; }
+          }
+        });
+
+        const bCountEl = document.getElementById("f2OverallCountBadge");
+        const bMeanEl = document.getElementById("f2OverallMeanBadge");
+        if (bCountEl) bCountEl.textContent = `${bRated} / 11 rated`;
+        if (bMeanEl) bMeanEl.textContent = bNumCount > 0 ? `Mean: ${(bSum / bNumCount).toFixed(2)} / 5` : "Mean: —";
+
+        const cCountEl = document.getElementById("f2ServicesCountBadge");
+        const cMeanEl = document.getElementById("f2ServicesMeanBadge");
+        if (cCountEl) cCountEl.textContent = `${cRated} / 7 rated`;
+        if (cMeanEl) cMeanEl.textContent = cNumCount > 0 ? `Mean: ${(cSum / cNumCount).toFixed(2)} / 5` : "Mean: —";
+      } else if (currentTab === "form3") {
+        label = "Form 3 (Closing Consultation)";
+        total = 4 + 4; // Campus, Date, Unit, Facilitator + 4 core required reflection questions
+        if (document.getElementById("f3_campus").value) filled++;
+        if (document.getElementById("f3_date").value) filled++;
+        if (document.getElementById("f3_unit").value.trim()) filled++;
+        if (document.getElementById("f3_facilitator").value.trim()) filled++;
+        if (document.getElementById("f3_q1").value.trim()) filled++;
+        if (document.getElementById("f3_q2").value.trim()) filled++;
+        if (document.getElementById("f3_q3").value.trim()) filled++;
+        if (document.getElementById("f3_q7").value.trim()) filled++;
+
+        let answeredCount = 0;
+        ["f3_q1", "f3_q2", "f3_q3", "f3_q4", "f3_q5", "f3_q6", "f3_q7"].forEach(qId => {
+          const el = document.getElementById(qId);
+          if (el && el.value.trim()) answeredCount++;
+        });
+        const refBadge = document.getElementById("f3ReflectionBadge");
+        if (refBadge) refBadge.textContent = `${answeredCount} / 7 answered`;
+      }
+
+      const pct = total > 0 ? Math.round((filled / total) * 100) : 0;
+      document.getElementById("progressText").textContent = `${label} Completion: ${pct}%`;
+      document.getElementById("progressBar").style.width = `${pct}%`;
+      document.getElementById("progressCount").textContent = `${filled} / ${total} required fields`;
+    }
+
+    // =========================================================================
+    // FORM 1 BUILDERS & DYNAMIC ROWS
+    // =========================================================================
+    function renderForm1Checklist() {
+      const container = document.getElementById("f1ChecklistContainer");
+      const scaleOptions = ["5", "4", "3", "2", "1", "N/O", "N/A"];
+
+      container.innerHTML = FORM1_AREAS.map(area => {
+        const rowsHtml = area.indicators.map((ind, idx) => {
+          const pillsHtml = scaleOptions.map(opt => `
+            <label class="pill-radio cursor-pointer">
+              <input type="radio" name="f1_${ind.id}" value="${opt}" class="sr-only" onchange="handleForm1RatingChange('${ind.id}', '${opt}')" />
+              <span class="inline-flex items-center justify-center min-w-[35px] px-2 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 text-xs font-bold text-slate-800 transition">
+                ${opt}
+              </span>
+            </label>
+          `).join("");
+
+          return `
+            <div id="f1_row_${ind.id}" class="p-4 sm:px-6 sm:py-4 flex flex-col lg:flex-row lg:items-center justify-between gap-3 hover:bg-slate-50/70 transition border-l-4 border-transparent">
+              <div class="lg:w-[39%] flex items-start gap-2.5">
+                <span class="text-xs font-bold text-urNavy bg-slate-200/80 px-2 py-0.5 rounded mt-0.5 shrink-0">${area.areaNo}.${idx + 1}</span>
+                <div class="space-y-1.5">
+                  <p class="text-xs sm:text-sm font-medium text-slate-900 leading-snug">
+                    ${ind.text} <span class="text-rose-600">*</span>
+                  </p>
+                  <button type="button" id="f1_esc_btn_${ind.id}" onclick="escalateIndicatorToIssue('${ind.id}')"
+                    class="hidden items-center gap-1 px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-[11px] font-bold shadow-xs transition">
+                    + Escalate Poor Rating to Section E Issues
+                  </button>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-1 lg:w-[33%] lg:justify-center">
+                ${pillsHtml}
+              </div>
+              <div class="lg:w-[28%]">
+                <input type="text" id="f1_${ind.id}_notes" placeholder="Evidence / comments..."
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:border-urNavy outline-none" />
+              </div>
+            </div>
+          `;
+        }).join("");
+
+        return `
+          <div>
+            <div class="bg-slate-100 px-5 py-2.5 border-b border-slate-200 flex items-center justify-between gap-2">
+              <h3 class="text-xs sm:text-sm font-extrabold text-urNavy">${area.areaTitle}</h3>
+              <span id="f1_area_badge_${area.areaNo}" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-white border border-slate-300 text-slate-600">0/${area.indicators.length} rated</span>
+            </div>
+            <div class="divide-y divide-slate-100">
+              ${rowsHtml}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function handleForm1RatingChange(indId, val) {
+      const row = document.getElementById(`f1_row_${indId}`);
+      const escBtn = document.getElementById(`f1_esc_btn_${indId}`);
+      if (row && escBtn) {
+        if (val === "1") {
+          row.classList.add("bg-rose-50/70", "border-rose-500");
+          row.classList.remove("border-transparent");
+          escBtn.classList.remove("hidden");
+          escBtn.classList.add("inline-flex");
+        } else {
+          row.classList.remove("bg-rose-50/70", "border-rose-500");
+          row.classList.add("border-transparent");
+          escBtn.classList.add("hidden");
+          escBtn.classList.remove("inline-flex");
+        }
+      }
+      updateActiveProgress();
+    }
+
+    function escalateIndicatorToIssue(indId) {
+      let indicatorText = "";
+      let areaTitle = "";
+      FORM1_AREAS.forEach(a => {
+        const found = a.indicators.find(i => i.id === indId);
+        if (found) {
+          indicatorText = found.text;
+          areaTitle = a.areaTitle;
+        }
+      });
+      const notes = document.getElementById(`f1_${indId}_notes`)?.value.trim();
+      const issueSummary = `[${areaTitle}] ${indicatorText}${notes ? " — Evidence: " + notes : ""}`;
+
+      // Reuse first empty row if available, otherwise add a new row
+      const rows = Array.from(document.querySelectorAll("#f1IssuesTbody .f1-issue-row"));
+      let targetRow = rows.find(r => !r.querySelector(".issue-desc").value.trim() && !r.querySelector(".issue-action").value.trim());
+      if (!targetRow) {
+        addForm1IssueRow();
+        const updatedRows = document.querySelectorAll("#f1IssuesTbody .f1-issue-row");
+        targetRow = updatedRows[updatedRows.length - 1];
+      }
+      targetRow.querySelector(".issue-desc").value = issueSummary;
+      const urgencySel = targetRow.querySelector(".issue-urgency");
+      urgencySel.value = "High";
+      updateUrgencyBadgeStyle(urgencySel);
+      targetRow.querySelector(".issue-status").value = "Open / Escalated";
+      targetRow.scrollIntoView({ behavior: "smooth", block: "center" });
+      showToast("Issue Escalated", "Added High-Urgency item to Section E Issues table.", "info");
+    }
+
+    function quickFillForm1NA() {
+      let count = 0;
+      FORM1_AREAS.forEach(area => {
+        area.indicators.forEach(ind => {
+          const checked = document.querySelector(`input[name="f1_${ind.id}"]:checked`);
+          if (!checked) {
+            const naRadio = document.querySelector(`input[name="f1_${ind.id}"][value="N/A"]`);
+            if (naRadio) {
+              naRadio.checked = true;
+              handleForm1RatingChange(ind.id, "N/A");
+              count++;
+            }
+          }
+        });
+      });
+      if (count > 0) {
+        showToast("Quick Fill Complete", `Set ${count} unrated indicator(s) to N/A.`, "info");
+      } else {
+        showToast("All Rated", "All 25 checklist indicators already have a rating selected.", "info");
+      }
+    }
+
+    function addForm1IssueRow() {
+      const tbody = document.getElementById("f1IssuesTbody");
+      const tr = document.createElement("tr");
+      tr.className = "f1-issue-row";
+      tr.innerHTML = `
+        <td class="p-2.5 text-center font-bold text-xs text-urNavy row-num">1</td>
+        <td class="p-2.5">
+          <input type="text" class="issue-desc w-full rounded-lg border border-slate-300 px-2.5 py-2 text-xs sm:text-sm focus:border-urNavy outline-none" placeholder="Describe issue or challenge..." />
+        </td>
+        <td class="p-2.5">
+          <select onchange="updateUrgencyBadgeStyle(this)" class="issue-urgency w-full rounded-lg border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2 text-xs sm:text-sm font-bold focus:border-urNavy outline-none">
+            <option value="High">High</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </td>
+        <td class="p-2.5">
+          <input type="text" class="issue-action w-full rounded-lg border border-slate-300 px-2.5 py-2 text-xs sm:text-sm focus:border-urNavy outline-none" placeholder="Action & responsible unit..." />
+        </td>
+        <td class="p-2.5">
+          <select class="issue-status w-full rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-xs sm:text-sm font-semibold focus:border-urNavy outline-none">
+            <option value="Open" selected>Open</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Open / Escalated">Open / Escalated</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </td>
+        <td class="p-2.5 text-center">
+          <button type="button" onclick="removeTableRow(this, 'f1IssuesTbody')" title="Remove Row"
+            class="p-1.5 rounded-lg text-rose-600 hover:bg-rose-50 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+      renumberTableRows("f1IssuesTbody");
+    }
+
+    function updateUrgencyBadgeStyle(selectEl) {
+      const v = selectEl.value;
+      selectEl.className = "issue-urgency rec-priority w-full rounded-lg border px-2.5 py-2 text-xs sm:text-sm font-bold focus:border-urNavy outline-none " +
+        (v === "High"
+          ? "border-rose-300 bg-rose-50 text-rose-800"
+          : v === "Low"
+            ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+            : "border-amber-300 bg-amber-50 text-amber-900");
+    }
+
+    function renumberTableRows(tbodyId) {
+      const tbody = document.getElementById(tbodyId);
+      if (!tbody) return;
+      Array.from(tbody.children).forEach((tr, idx) => {
+        const numCell = tr.querySelector(".row-num");
+        if (numCell) numCell.textContent = idx + 1;
+      });
+    }
+
+    // =========================================================================
+    // FORM 2 BUILDERS (11 OVERALL STATEMENTS & 7 WELFARE SERVICES)
+    // =========================================================================
+    function renderForm2Overall() {
+      const container = document.getElementById("f2OverallContainer");
+      const opts = ["5", "4", "3", "2", "1", "N/A"];
+
+      container.innerHTML = FORM2_OVERALL_STATEMENTS.map(st => {
+        const pills = opts.map(opt => `
+          <label class="pill-radio cursor-pointer">
+            <input type="radio" name="f2_${st.id}" value="${opt}" class="sr-only" onchange="updateActiveProgress()" />
+            <span class="inline-flex items-center justify-center min-w-[40px] px-2.5 py-1.5 rounded-lg border border-slate-300 bg-slate-50 hover:bg-amber-50 text-xs font-bold text-slate-800 transition">
+              ${opt}
+            </span>
+          </label>
+        `).join("");
+
+        return `
+          <div class="p-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between gap-3 hover:bg-slate-50/70 transition">
+            <div class="flex items-start gap-3 md:w-[58%]">
+              <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-urNavy text-white text-xs font-bold shrink-0">
+                ${st.no}
+              </span>
+              <p class="text-xs sm:text-sm font-medium text-slate-900 leading-snug">
+                ${st.text} <span class="text-rose-600">*</span>
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 md:justify-end">
+              ${pills}
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderForm2Services() {
+      const container = document.getElementById("f2ServicesContainer");
+      const opts = ["5", "4", "3", "2", "1", "N/A"];
+
+      container.innerHTML = FORM2_SERVICES.map(sv => {
+        const pills = opts.map(opt => `
+          <label class="pill-radio-gold cursor-pointer">
+            <input type="radio" name="f2_${sv.id}" value="${opt}" class="sr-only" onchange="updateActiveProgress()" />
+            <span class="inline-flex items-center justify-center min-w-[40px] px-2.5 py-1.5 rounded-lg border border-slate-300 bg-slate-50 hover:bg-sky-50 text-xs font-bold text-slate-800 transition">
+              ${opt}
+            </span>
+          </label>
+        `).join("");
+
+        return `
+          <div class="p-4 sm:px-6 flex flex-col lg:flex-row lg:items-center justify-between gap-3 hover:bg-slate-50/70 transition">
+            <div class="flex items-start gap-3 lg:w-[38%]">
+              <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-urSky text-white text-xs font-bold shrink-0">
+                ${sv.no}
+              </span>
+              <p class="text-xs sm:text-sm font-semibold text-slate-900 leading-snug">
+                ${sv.label} <span class="text-rose-600">*</span>
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 lg:w-[32%] lg:justify-center">
+              ${pills}
+            </div>
+            <div class="lg:w-[30%]">
+              <input type="text" id="f2_${sv.id}_comment" placeholder="Comments (if any)..."
+                class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:border-urSky outline-none" />
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // =========================================================================
+    // FORM 3 DYNAMIC RECOMMENDATION ROWS
+    // =========================================================================
+    function addForm3RecRow() {
+      const tbody = document.getElementById("f3RecsTbody");
+      const tr = document.createElement("tr");
+      tr.className = "f3-rec-row";
+      tr.innerHTML = `
+        <td class="p-2.5 text-center font-bold text-xs text-urNavy row-num">1</td>
+        <td class="p-2.5">
+          <input type="text" class="rec-action w-full rounded-lg border border-slate-300 px-2.5 py-2 text-xs sm:text-sm focus:border-urNavy outline-none" placeholder="Recommended action..." />
+        </td>
+        <td class="p-2.5">
+          <input type="text" class="rec-unit w-full rounded-lg border border-slate-300 px-2.5 py-2 text-xs sm:text-sm focus:border-urNavy outline-none" placeholder="Responsible unit..." />
+        </td>
+        <td class="p-2.5">
+          <select onchange="updateUrgencyBadgeStyle(this)" class="rec-priority w-full rounded-lg border border-amber-300 bg-amber-50 text-amber-900 px-2.5 py-2 text-xs sm:text-sm font-bold focus:border-urNavy outline-none">
+            <option value="High">High</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </td>
+        <td class="p-2.5">
+          <select class="rec-timeframe w-full rounded-lg border border-slate-300 bg-white px-2.5 py-2 text-xs sm:text-sm font-semibold focus:border-urNavy outline-none">
+            <option value="Immediate (Within 1 week)">Immediate (Within 1 week)</option>
+            <option value="Short-term (1–3 months)">Short-term (1–3 months)</option>
+            <option value="Before Next Induction" selected>Before Next Induction</option>
+            <option value="Long-term">Long-term</option>
+          </select>
+        </td>
+        <td class="p-2.5 text-center">
+          <button type="button" onclick="removeTableRow(this, 'f3RecsTbody')" title="Remove Row"
+            class="p-1.5 rounded-lg text-rose-600 hover:bg-rose-50 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+      renumberTableRows("f3RecsTbody");
+    }
+
+    function removeTableRow(btn, tbodyId) {
+      const tbody = document.getElementById(tbodyId);
+      if (tbody.children.length <= 1) {
+        showToast("Minimum Row", "At least one row is kept in the table.", "info");
+        return;
+      }
+      btn.closest("tr").remove();
+      renumberTableRows(tbodyId);
+    }
+
+    // =========================================================================
+    // UI TOGGLE HELPERS
+    // =========================================================================
+    function toggleOtherInput(selectId, wrapId) {
+      const val = document.getElementById(selectId).value;
+      const wrap = document.getElementById(wrapId);
+      if (val === "Other") {
+        wrap.classList.remove("hidden");
+        const inp = wrap.querySelector("input");
+        if (inp) inp.focus();
+      } else {
+        wrap.classList.add("hidden");
+      }
+    }
+
+    function toggleForm2CampusOther() {
+      const checked = document.querySelector('input[name="f2_campus"]:checked');
+      const wrap = document.getElementById("f2_campus_other_wrap");
+      if (checked && checked.value === "Other") {
+        wrap.classList.remove("hidden");
+        const inp = wrap.querySelector("input");
+        if (inp) inp.focus();
+      } else {
+        wrap.classList.add("hidden");
+      }
+    }
+
+    function toggleForm2ConditionalSections() {
+      const catChecked = document.querySelector('input[name="f2_student_cat"]:checked');
+      const intlCard = document.getElementById("f2_intl_subcard");
+      if (intlCard) {
+        if (catChecked && catChecked.value === "International student") {
+          intlCard.classList.remove("hidden");
+        } else {
+          intlCard.classList.add("hidden");
+        }
+      }
+
+      const disabChecked = document.querySelector('input[name="f2_disability"]:checked');
+      const disabCard = document.getElementById("f2_disability_subcard");
+      if (disabCard) {
+        if (disabChecked && disabChecked.value === "Yes") {
+          disabCard.classList.remove("hidden");
+        } else {
+          disabCard.classList.add("hidden");
+        }
+      }
+    }
+
+    function toggleCheckboxInput(cbId, wrapId, inputId) {
+      const cb = document.getElementById(cbId);
+      const wrap = document.getElementById(wrapId);
+      const inp = document.getElementById(inputId);
+      if (cb.checked) {
+        if (wrap) wrap.classList.remove("hidden");
+        if (inp) inp.focus();
+      } else {
+        if (wrap) wrap.classList.add("hidden");
+        if (inp) inp.value = "";
+      }
+    }
+
+    // =========================================================================
+    // FORM SUBMISSIONS & VALIDATION
+    // =========================================================================
+    function handleForm1Submit(e) {
+      e.preventDefault();
+      let campus = document.getElementById("f1_campus").value;
+      if (campus === "Other") {
+        const customCampus = document.getElementById("f1_campus_other").value.trim();
+        if (!customCampus) {
+          showToast("Specify Campus", "Please enter the Campus / Location name.", "error");
+          document.getElementById("f1_campus_other").focus();
+          return;
+        }
+        campus = customCampus;
+        registerCustomCampus(campus);
+      }
+      const date = document.getElementById("f1_date").value;
+      const evaluators = document.getElementById("f1_evaluators").value.trim();
+      const units = document.getElementById("f1_units").value.trim();
+
+      if (!campus || !date || !evaluators || !units) {
+        showToast("Missing General Info", "Please complete Campus, Date, Evaluator(s), and Unit(s) visited.", "error");
+        return;
+      }
+
+      const checklist = {};
+      for (const area of FORM1_AREAS) {
+        for (const ind of area.indicators) {
+          const checked = document.querySelector(`input[name="f1_${ind.id}"]:checked`);
+          if (!checked) {
+            showToast("Incomplete Checklist", `Please rate indicator ${ind.id.replace("c", "").replace("_", ".")}: "${ind.text.slice(0, 45)}..."`, "error");
+            return;
+          }
+          checklist[`${ind.id}_rating`] = checked.value;
+          checklist[`${ind.id}_evidence`] = document.getElementById(`f1_${ind.id}_notes`).value.trim();
+        }
+      }
+
+      const methods = Array.from(document.querySelectorAll('input[name="f1_consult_method"]:checked')).map(cb => {
+        if (cb.value === "Other") {
+          const otherTxt = document.getElementById("f1_consult_other_text").value.trim();
+          return otherTxt ? `Other (${otherTxt})` : "Other";
+        }
+        return cb.value;
+      });
+
+      const issues = [];
+      document.querySelectorAll("#f1IssuesTbody .f1-issue-row").forEach(row => {
+        const desc = row.querySelector(".issue-desc").value.trim();
+        const urgency = row.querySelector(".issue-urgency").value;
+        const action = row.querySelector(".issue-action").value.trim();
+        const status = row.querySelector(".issue-status").value;
+        if (desc || action) {
+          issues.push({ issue: desc, urgency, recommendedAction: action, status });
+        }
+      });
+
+      const record = {
+        recordId: `UR-F1-${Math.floor(1000 + Math.random() * 9000)}`,
+        formType: "form1",
+        formLabel: "Form 1: Daily Monitoring",
+        submittedAt: new Date().toISOString(),
+        campus,
+        academicYearCohort: document.getElementById("f1_cohort").value.trim(),
+        date,
+        evaluators,
+        unitsVisited: units,
+        staffConsulted: document.getElementById("f1_staff_consulted").value.trim(),
+        checklist,
+        studentsConsultedCount: document.getElementById("f1_students_count").value.trim(),
+        consultationMethods: methods.join("; "),
+        feedbackMostUseful: document.getElementById("f1_d1").value.trim(),
+        feedbackStillNeeded: document.getElementById("f1_d2").value.trim(),
+        feedbackChallenges: document.getElementById("f1_d3").value.trim(),
+        feedbackSpecialGroups: document.getElementById("f1_d4").value.trim(),
+        issuesIdentified: issues,
+        summaryAchievements: document.getElementById("f1_sum_achievements").value.trim(),
+        summaryGaps: document.getElementById("f1_sum_gaps").value.trim(),
+        summaryEscalation: document.getElementById("f1_sum_escalation").value.trim(),
+        summaryPriorityTomorrow: document.getElementById("f1_sum_priority").value.trim(),
+        evaluatorSignature: document.getElementById("f1_eval_sig").value.trim(),
+        signatureDate: document.getElementById("f1_eval_sig_date").value,
+        campusRepresentative: document.getElementById("f1_rep_name").value.trim(),
+        representativeSignature: document.getElementById("f1_rep_sig").value.trim()
+      };
+
+      saveRecord(record);
+      showToast("Form 1 Submitted", `Daily Monitoring report ${record.recordId} saved for ${campus}.`, "success");
+      resetForm1(false);
+      switchTab('data');
+    }
+
+    function handleForm2Submit(e) {
+      e.preventDefault();
+      const campusRadio = document.querySelector('input[name="f2_campus"]:checked');
+      if (!campusRadio) {
+        showToast("Select Campus", "Please select your UR Campus in Section A.", "error");
+        return;
+      }
+      let campus = campusRadio.value;
+      if (campus === "Other") {
+        const customCampus = document.getElementById("f2_campus_other").value.trim();
+        if (!customCampus) {
+          showToast("Specify Campus", "Please type your Campus name in Section A.", "error");
+          document.getElementById("f2_campus_other").focus();
+          return;
+        }
+        campus = customCampus;
+        registerCustomCampus(campus);
+      }
+
+      const catRadio = document.querySelector('input[name="f2_student_cat"]:checked');
+      if (!catRadio) {
+        showToast("Select Student Category", "Please select Local student, International student, or Prefer not to say.", "error");
+        return;
+      }
+
+      const overallRatings = {};
+      for (const st of FORM2_OVERALL_STATEMENTS) {
+        const checked = document.querySelector(`input[name="f2_${st.id}"]:checked`);
+        if (!checked) {
+          showToast("Incomplete Section B", `Please rate statement ${st.no}: "${st.text.slice(0, 42)}..."`, "error");
+          return;
+        }
+        overallRatings[`${st.id}_rating`] = checked.value;
+      }
+
+      const serviceRatings = {};
+      for (const sv of FORM2_SERVICES) {
+        const checked = document.querySelector(`input[name="f2_${sv.id}"]:checked`);
+        if (!checked) {
+          showToast("Incomplete Section C", `Please rate service ${sv.no}: "${sv.label}"`, "error");
+          return;
+        }
+        serviceRatings[`${sv.id}_rating`] = checked.value;
+        serviceRatings[`${sv.id}_comment`] = document.getElementById(`f2_${sv.id}_comment`).value.trim();
+      }
+
+      const genderRadio = document.querySelector('input[name="f2_gender"]:checked');
+      const disabRadio = document.querySelector('input[name="f2_disability"]:checked');
+
+      const record = {
+        recordId: `UR-F2-${Math.floor(1000 + Math.random() * 9000)}`,
+        formType: "form2",
+        formLabel: "Form 2: Student Evaluation",
+        submittedAt: new Date().toISOString(),
+        date: new Date().toISOString().split("T")[0],
+        campus,
+        academicYearCohort: document.getElementById("f2_cohort").value.trim(),
+        programme: document.getElementById("f2_programme").value.trim(),
+        studentCategory: catRadio.value,
+        internationalCountryOrigin: catRadio.value === "International student" ? document.getElementById("f2_intl_country").value.trim() : "",
+        internationalArrivalSupport: catRadio.value === "International student" ? document.getElementById("f2_intl_immigration").value.trim() : "",
+        internationalIntegrationFeedback: catRadio.value === "International student" ? document.getElementById("f2_intl_integration").value.trim() : "",
+        gender: genderRadio ? genderRadio.value : "",
+        disabilitySupportNeed: disabRadio ? disabRadio.value : "",
+        disabilityNeedsMetStatus: disabRadio && disabRadio.value === "Yes" ? document.getElementById("f2_disab_met").value : "",
+        disabilitySupportDetails: disabRadio && disabRadio.value === "Yes" ? document.getElementById("f2_disab_details").value.trim() : "",
+        overallRatings,
+        serviceRatings,
+        q1MostUseful: document.getElementById("f2_q1").value.trim(),
+        q2MissingTopics: document.getElementById("f2_q2").value.trim(),
+        q3Challenges: document.getElementById("f2_q3").value.trim(),
+        q4ContinueDoing: document.getElementById("f2_q4").value.trim(),
+        q5TopSuggestions: document.getElementById("f2_q5").value.trim(),
+        optionalFollowupContact: document.getElementById("f2_followup_contact").value.trim()
+      };
+
+      saveRecord(record);
+      showToast("Form 2 Submitted", `Thank you! Your evaluation (${record.recordId}) has been recorded.`, "success");
+      resetForm2(false);
+      switchTab('data');
+    }
+
+    function handleForm3Submit(e) {
+      e.preventDefault();
+      let campus = document.getElementById("f3_campus").value;
+      if (campus === "Other") {
+        const customCampus = document.getElementById("f3_campus_other").value.trim();
+        if (!customCampus) {
+          showToast("Specify Campus", "Please enter the Campus name in Section A.", "error");
+          document.getElementById("f3_campus_other").focus();
+          return;
+        }
+        campus = customCampus;
+        registerCustomCampus(campus);
+      }
+      const date = document.getElementById("f3_date").value;
+      const unit = document.getElementById("f3_unit").value.trim();
+      const facilitator = document.getElementById("f3_facilitator").value.trim();
+
+      if (!campus || !date || !unit || !facilitator) {
+        showToast("Missing Consultation Details", "Please fill in Campus, Date, Unit/Department, and Facilitator.", "error");
+        return;
+      }
+
+      const q1 = document.getElementById("f3_q1").value.trim();
+      const q2 = document.getElementById("f3_q2").value.trim();
+      const q3 = document.getElementById("f3_q3").value.trim();
+      const q7 = document.getElementById("f3_q7").value.trim();
+
+      if (!q1 || !q2 || !q3 || !q7) {
+        showToast("Incomplete Reflection", "Please complete required discussion questions 1, 2, 3, and 7.", "error");
+        return;
+      }
+
+      const recommendations = [];
+      document.querySelectorAll("#f3RecsTbody .f3-rec-row").forEach(row => {
+        const action = row.querySelector(".rec-action").value.trim();
+        const respUnit = row.querySelector(".rec-unit").value.trim();
+        const priority = row.querySelector(".rec-priority").value;
+        const timeframe = row.querySelector(".rec-timeframe").value.trim();
+        if (action || respUnit || timeframe) {
+          recommendations.push({ recommendation: action, responsibleUnit: respUnit, priority, proposedTimeframe: timeframe });
+        }
+      });
+
+      const record = {
+        recordId: `UR-F3-${Math.floor(1000 + Math.random() * 9000)}`,
+        formType: "form3",
+        formLabel: "Form 3: Closing Consultation",
+        submittedAt: new Date().toISOString(),
+        campus,
+        academicYearCohort: document.getElementById("f3_cohort").value.trim(),
+        date,
+        unitDepartment: unit,
+        facilitator,
+        staffConsultedCount: document.getElementById("f3_staff_count").value.trim(),
+        rolesUnitsRepresented: document.getElementById("f3_roles_represented").value.trim(),
+        q1ImplementedSuccessfully: q1,
+        q2OperationalChallenges: q2,
+        q3ResourcesAdequacy: q3,
+        q4StudentIssuesAddressed: document.getElementById("f3_q4").value.trim(),
+        q5ServiceImprovements: document.getElementById("f3_q5").value.trim(),
+        q6CoordinationImprovements: document.getElementById("f3_q6").value.trim(),
+        q7ManagementPriorities: q7,
+        recommendations,
+        namesUnitsRepresented: document.getElementById("f3_names_rep").value.trim(),
+        facilitatorSignature: document.getElementById("f3_fac_sig").value.trim(),
+        signatureDate: document.getElementById("f3_sig_date").value
+      };
+
+      saveRecord(record);
+      showToast("Form 3 Submitted", `Closing consultation report ${record.recordId} saved for ${campus}.`, "success");
+      resetForm3(false);
+      switchTab('data');
+    }
+
+    // =========================================================================
+    // FORM RESET FUNCTIONS
+    // =========================================================================
+    function resetForm1(notify) {
+      document.getElementById("form1Element").reset();
+      setDefaultDates();
+      document.getElementById("f1_campus_other_wrap").classList.add("hidden");
+      document.getElementById("f1_consult_other_wrap").classList.add("hidden");
+      document.getElementById("f1_consult_other_text").value = "";
+      FORM1_AREAS.forEach(area => {
+        area.indicators.forEach(ind => {
+          const row = document.getElementById(`f1_row_${ind.id}`);
+          const escBtn = document.getElementById(`f1_esc_btn_${ind.id}`);
+          if (row) {
+            row.classList.remove("bg-rose-50/70", "border-rose-500");
+            row.classList.add("border-transparent");
+          }
+          if (escBtn) {
+            escBtn.classList.add("hidden");
+            escBtn.classList.remove("inline-flex");
+          }
+        });
+      });
+      document.getElementById("f1IssuesTbody").innerHTML = "";
+      addForm1IssueRow();
+      updateActiveProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (notify) showToast("Form 1 Cleared", "All Daily Monitoring fields have been reset.", "info");
+    }
+
+    function resetForm2(notify) {
+      document.getElementById("form2Element").reset();
+      document.getElementById("f2_campus_other_wrap").classList.add("hidden");
+      document.getElementById("f2_intl_subcard").classList.add("hidden");
+      document.getElementById("f2_disability_subcard").classList.add("hidden");
+      updateActiveProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (notify) showToast("Form 2 Cleared", "All Student Evaluation fields have been reset.", "info");
+    }
+
+    function resetForm3(notify) {
+      document.getElementById("form3Element").reset();
+      setDefaultDates();
+      document.getElementById("f3_campus_other_wrap").classList.add("hidden");
+      document.getElementById("f3RecsTbody").innerHTML = "";
+      addForm3RecRow();
+      updateActiveProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (notify) showToast("Form 3 Cleared", "All Closing Consultation fields have been reset.", "info");
+    }
+
+    // =========================================================================
+    // LOCAL STORAGE & REPOSITORY ANALYTICS
+    // =========================================================================
+    function getAllRecords() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveRecord(record) {
+      const all = getAllRecords();
+      all.unshift(record);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(all));
+      updateTotalBadge();
+    }
+
+    function updateTotalBadge() {
+      const badge = document.getElementById("totalBadge");
+      if (badge) badge.textContent = getAllRecords().length;
+    }
+
+    function setDataFormFilter(filterType) {
+      currentDataFilter = filterType;
+      document.querySelectorAll(".data-filter-btn").forEach(btn => {
+        btn.className = "data-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition";
+      });
+      const active = document.getElementById(`filterBtn-${filterType}`);
+      if (active) {
+        active.className = "data-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-urNavy text-white transition";
+      }
+      renderDataDashboard();
+    }
+
+    function getFilteredRecords() {
+      const all = getAllRecords();
+      const campusVal = document.getElementById("filterCampusSelect")?.value || "all";
+      const cohortVal = document.getElementById("filterCohortSelect")?.value || "all";
+      let filtered = currentDataFilter === "all" ? all : all.filter(r => r.formType === currentDataFilter);
+      if (campusVal !== "all") {
+        filtered = filtered.filter(r => r.campus === campusVal);
+      }
+      if (cohortVal !== "all") {
+        filtered = filtered.filter(r => r.academicYearCohort === cohortVal);
+      }
+      return filtered;
+    }
+
+    function renderDataDashboard() {
+      const all = getAllRecords();
+      const campusSel = document.getElementById("filterCampusSelect");
+      const cohortSel = document.getElementById("filterCohortSelect");
+      const prevCampus = campusSel.value || "all";
+      const prevCohort = cohortSel.value || "all";
+
+      const allCampusesSet = new Set([
+        ...all.map(r => r.campus).filter(Boolean),
+        ...getCustomCampuses()
+      ]);
+      const campusesList = Array.from(allCampusesSet).sort();
+      campusSel.innerHTML = `<option value="all">All Campuses (${campusesList.length})</option>` +
+        campusesList.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+      if (campusesList.includes(prevCampus)) campusSel.value = prevCampus;
+
+      const cohortsList = Array.from(new Set(all.map(r => r.academicYearCohort).filter(Boolean))).sort();
+      cohortSel.innerHTML = `<option value="all">All Cohorts / Academic Years (${cohortsList.length})</option>` +
+        cohortsList.map(ch => `<option value="${escapeHtml(ch)}">${escapeHtml(ch)}</option>`).join("");
+      if (cohortsList.includes(prevCohort)) cohortSel.value = prevCohort;
+
+      // Cross-filtered dataset for KPIs, visual bars, and table
+      const filtered = getFilteredRecords();
+      const f1Count = filtered.filter(r => r.formType === "form1").length;
+      const f2Count = filtered.filter(r => r.formType === "form2").length;
+      const f3Count = filtered.filter(r => r.formType === "form3").length;
+      const uniqueCampuses = new Set(filtered.map(r => r.campus).filter(Boolean));
+
+      // KPI Cards (Recalculated live from active filters)
+      document.getElementById("kpiCardsContainer").innerHTML = `
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <p class="text-[11px] font-bold uppercase text-slate-500">Filtered Records</p>
+          <p class="text-2xl font-extrabold text-urNavy mt-0.5">${filtered.length} <span class="text-xs font-medium text-slate-400">/ ${all.length}</span></p>
+        </div>
+        <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-3.5">
+          <p class="text-[11px] font-bold uppercase text-amber-900">Form 1 (Daily)</p>
+          <p class="text-2xl font-extrabold text-urNavy mt-0.5">${f1Count}</p>
+        </div>
+        <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-3.5">
+          <p class="text-[11px] font-bold uppercase text-sky-900">Form 2 (Students)</p>
+          <p class="text-2xl font-extrabold text-urSky mt-0.5">${f2Count}</p>
+        </div>
+        <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-3.5">
+          <p class="text-[11px] font-bold uppercase text-emerald-900">Form 3 (Staff)</p>
+          <p class="text-2xl font-extrabold text-emerald-700 mt-0.5">${f3Count}</p>
+        </div>
+        <div class="bg-indigo-50/70 border border-indigo-200 rounded-xl p-3.5 col-span-2 sm:col-span-1">
+          <p class="text-[11px] font-bold uppercase text-indigo-900">Campuses in View</p>
+          <p class="text-2xl font-extrabold text-indigo-800 mt-0.5">${uniqueCampuses.size}</p>
+        </div>
+      `;
+
+      // Live Campus Breakdown & Average Rating Visual Bar Chart
+      const campusStats = {};
+      filtered.forEach(r => {
+        const c = r.campus || "Unspecified";
+        if (!campusStats[c]) campusStats[c] = { count: 0, ratingSum: 0, ratingN: 0 };
+        campusStats[c].count++;
+        const ratingBags = [r.checklist, r.overallRatings, r.serviceRatings];
+        ratingBags.forEach(bag => {
+          if (!bag) return;
+          Object.entries(bag).forEach(([k, v]) => {
+            if (k.endsWith("_rating")) {
+              const num = Number(v);
+              if (!isNaN(num)) {
+                campusStats[c].ratingSum += num;
+                campusStats[c].ratingN++;
+              }
+            }
+          });
+        });
+      });
+
+      const campusEntries = Object.entries(campusStats);
+      document.getElementById("campusBreakdownContainer").innerHTML = campusEntries.length === 0
+        ? `<p class="text-xs text-slate-400">No campus submissions match the active filters.</p>`
+        : `
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-bold text-slate-600">Submissions by Campus:</span>
+            ${campusEntries.map(([c, st]) => `
+              <span class="px-2.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-800">
+                ${escapeHtml(c)}: <strong class="text-urNavy">${st.count}</strong>
+              </span>
+            `).join("")}
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-1">
+            ${campusEntries.map(([c, st]) => {
+              const avg = st.ratingN > 0 ? (st.ratingSum / st.ratingN) : 0;
+              const pct = st.ratingN > 0 ? Math.round((avg / 5) * 100) : 0;
+              return `
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-2.5">
+                  <div class="flex items-center justify-between text-xs mb-1">
+                    <span class="font-bold text-slate-800">${escapeHtml(c)}</span>
+                    <span class="font-extrabold text-urNavy">${st.ratingN > 0 ? avg.toFixed(2) + " / 5.0" : "Qualitative"}</span>
+                  </div>
+                  <div class="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-urNavy rounded-full transition-all duration-300" style="width: ${pct}%;"></div>
+                  </div>
+                </div>
+              `;
+            }).join("")}
+          </div>
+        `;
+
+      const tbody = document.getElementById("recordsTableBody");
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="py-10 px-4 text-center text-slate-500">
+              <p class="font-bold text-slate-700">No matching records found.</p>
+              <p class="text-xs mt-1">Complete and submit Form 1, Form 2, or Form 3 or adjust your filters.</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(rec => {
+        let badgeClass = "bg-amber-100 text-urNavy";
+        let detail = "";
+        if (rec.formType === "form1") {
+          badgeClass = "bg-amber-100 text-urNavy";
+          detail = `Evaluator: ${rec.evaluators || "N/A"} (${rec.unitsVisited || ""})`;
+        } else if (rec.formType === "form2") {
+          badgeClass = "bg-sky-100 text-sky-900";
+          detail = `${rec.studentCategory || "Student"} ${rec.programme ? "• " + rec.programme : ""}`;
+        } else {
+          badgeClass = "bg-emerald-100 text-emerald-900";
+          detail = `Unit: ${rec.unitDepartment || "N/A"} • Facilitator: ${rec.facilitator || "N/A"}`;
+        }
+
+        return `
+          <tr class="hover:bg-slate-50/90 transition">
+            <td class="py-3 px-4 font-mono font-bold text-urNavy whitespace-nowrap">${escapeHtml(rec.recordId)}</td>
+            <td class="py-3 px-4 whitespace-nowrap">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${badgeClass}">${escapeHtml(rec.formLabel)}</span>
+            </td>
+            <td class="py-3 px-4 font-semibold text-slate-800 whitespace-nowrap">${escapeHtml(rec.campus)}</td>
+            <td class="py-3 px-4 text-slate-600 whitespace-nowrap">${escapeHtml(rec.academicYearCohort || "—")}</td>
+            <td class="py-3 px-4 text-slate-600 whitespace-nowrap">${escapeHtml(rec.date)}</td>
+            <td class="py-3 px-4 text-slate-600 max-w-xs truncate">${escapeHtml(detail)}</td>
+            <td class="py-3 px-4 text-right whitespace-nowrap space-x-1.5">
+              <button type="button" onclick="inspectRecord('${rec.recordId}')"
+                class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-amber-100 text-urNavy text-xs font-bold transition">
+                Inspect
+              </button>
+              <button type="button" onclick="deleteRecord('${rec.recordId}')"
+                class="px-2.5 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold transition">
+                Delete
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function inspectRecord(recordId) {
+      const rec = getAllRecords().find(r => r.recordId === recordId);
+      if (!rec) return;
+
+      document.getElementById("inspectModalTitle").textContent = `${rec.recordId} — ${rec.formLabel} (${rec.campus})`;
+      const body = document.getElementById("inspectModalBody");
+
+      const entries = Object.entries(rec).map(([key, val]) => {
+        if (typeof val === "object" && val !== null) {
+          return `
+            <div class="border border-slate-200 rounded-xl p-3 bg-slate-50">
+              <p class="text-[11px] font-mono font-bold uppercase text-urNavy mb-1">${escapeHtml(key)}</p>
+              <pre class="text-xs text-slate-800 whitespace-pre-wrap font-sans">${escapeHtml(JSON.stringify(val, null, 2))}</pre>
+            </div>
+          `;
+        }
+        return `
+          <div class="flex flex-col sm:flex-row sm:justify-between border-b border-slate-100 py-1.5 gap-1">
+            <span class="text-xs font-mono font-semibold text-slate-500">${escapeHtml(key)}:</span>
+            <span class="text-xs sm:text-sm font-medium text-slate-900 sm:text-right">${escapeHtml(val || "—")}</span>
+          </div>
+        `;
+      }).join("");
+
+      body.innerHTML = entries;
+      document.getElementById("inspectModal").classList.remove("hidden");
+    }
+
+    function closeInspectModal() {
+      document.getElementById("inspectModal").classList.add("hidden");
+    }
+
+    function deleteRecord(recordId) {
+      const updated = getAllRecords().filter(r => r.recordId !== recordId);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      updateTotalBadge();
+      renderDataDashboard();
+      showToast("Record Deleted", `Removed ${recordId} from local repository.`, "info");
+    }
+
+    function promptClearData() {
+      if (getAllRecords().length === 0) {
+        showToast("Empty Repository", "There are no stored records to clear.", "info");
+        return;
+      }
+      document.getElementById("clearConfirmBanner").classList.remove("hidden");
+    }
+
+    function confirmClearData() {
+      localStorage.removeItem(STORAGE_KEY);
+      document.getElementById("clearConfirmBanner").classList.add("hidden");
+      updateTotalBadge();
+      renderDataDashboard();
+      showToast("Repository Cleared", "All stored records have been deleted.", "info");
+    }
+
+    function loadSampleDemoData() {
+      const today = new Date().toISOString().split("T")[0];
+      const sampleChecklist = {};
+      FORM1_AREAS.forEach((area, aIdx) => {
+        area.indicators.forEach((ind, iIdx) => {
+          sampleChecklist[`${ind.id}_rating`] = ((aIdx + iIdx) % 2 === 0) ? "5" : "4";
+          sampleChecklist[`${ind.id}_evidence`] = "Verified on site with campus welfare & unit team.";
+        });
+      });
+
+      const demoRecords = [
+        {
+          recordId: `UR-F1-${Math.floor(1000 + Math.random() * 9000)}`,
+          formType: "form1",
+          formLabel: "Form 1: Daily Monitoring",
+          submittedAt: new Date().toISOString(),
+          campus: "Nyarugenge",
+          academicYearCohort: "2026/2027 Intake",
+          date: today,
+          evaluators: "Dative Murebwayire (Students Welfare Officer)",
+          unitsVisited: "Main Auditorium, Campus Clinic, Dining Hall, Hostels",
+          staffConsulted: "Campus Nurse, Catering Manager, Hostel Warden",
+          checklist: sampleChecklist,
+          studentsConsultedCount: "32",
+          consultationMethods: "Informal discussion; Group discussion",
+          feedbackMostUseful: "Campus orientation tour and academic registration guidance.",
+          feedbackStillNeeded: "Clearer timetable for ICT portal activation.",
+          feedbackChallenges: "Minor lunch queue congestion between 12:30 and 13:00.",
+          feedbackSpecialGroups: "Ground-floor accessible rooms confirmed for students with mobility needs.",
+          issuesIdentified: [
+            {
+              issue: "Lunch serving queue peak congestion",
+              urgency: "Medium",
+              recommendedAction: "Open second serving line in main dining hall (Catering Unit)",
+              status: "Communicated to Restaurant Manager"
+            }
+          ],
+          summaryAchievements: "High student attendance and strong facilitator engagement.",
+          summaryGaps: "Staggered meal schedules needed for large cohorts.",
+          summaryEscalation: "None",
+          summaryPriorityTomorrow: "Verify second dining serving line during lunch hour.",
+          evaluatorSignature: "D. Murebwayire",
+          signatureDate: today,
+          campusRepresentative: "Campus Dean of Students",
+          representativeSignature: "Confirmed"
+        },
+        {
+          recordId: `UR-F2-${Math.floor(1000 + Math.random() * 9000)}`,
+          formType: "form2",
+          formLabel: "Form 2: Student Evaluation",
+          submittedAt: new Date().toISOString(),
+          date: today,
+          campus: "Huye",
+          academicYearCohort: "2026/2027 Intake",
+          programme: "CMHS - General Medicine",
+          studentCategory: "International student",
+          gender: "Female",
+          disabilitySupportNeed: "No",
+          overallRatings: {
+            b1_rating: "5", b2_rating: "5", b3_rating: "4", b4_rating: "5",
+            b5_rating: "4", b6_rating: "5", b7_rating: "5", b8_rating: "4",
+            b9_rating: "4", b10_rating: "5", b11_rating: "5"
+          },
+          serviceRatings: {
+            s1_rating: "5", s1_comment: "Clinic staff very welcoming",
+            s2_rating: "4", s2_comment: "Meals on time",
+            s3_rating: "4", s3_comment: "Clean hostel block",
+            s4_rating: "5", s4_comment: "24/7 water and electricity",
+            s5_rating: "4", s5_comment: "Handwashing stations stocked",
+            s6_rating: "N/A", s6_comment: "",
+            s7_rating: "5", s7_comment: "Very helpful student leaders"
+          },
+          q1MostUseful: "Immigration/registration desk and peer mentorship sessions.",
+          q2MissingTopics: "More Kinyarwanda survival phrases for daily shopping.",
+          q3Challenges: "None experienced after initial airport reception.",
+          q4ContinueDoing: "Dedicated international student welcome desk.",
+          q5TopSuggestions: "Keep pairing new international students with senior student buddies.",
+          optionalFollowupContact: ""
+        },
+        {
+          recordId: `UR-F3-${Math.floor(1000 + Math.random() * 9000)}`,
+          formType: "form3",
+          formLabel: "Form 3: Closing Consultation",
+          submittedAt: new Date().toISOString(),
+          campus: "Remera",
+          academicYearCohort: "2026/2027 Intake",
+          date: today,
+          unitDepartment: "Students' Welfare & Estates",
+          facilitator: "M&E Coordination Team",
+          staffConsultedCount: "14",
+          rolesUnitsRepresented: "Wardens, Nurses, Security, Sports Officers, Catering",
+          q1ImplementedSuccessfully: "Timely hostel check-in, health screening, and sports integration.",
+          q2OperationalChallenges: "Last-minute late arrivals requiring evening room allocation.",
+          q3ResourcesAdequacy: "Medical supplies and orientation guides arrived on time.",
+          q4StudentIssuesAddressed: "Lost student IDs and meal card activation resolved within 24 hours.",
+          q5ServiceImprovements: "Install additional smart water dispensers near sports grounds.",
+          q6CoordinationImprovements: "Shared real-time arrival dashboard between Admissions and Welfare.",
+          q7ManagementPriorities: "Pre-allocate hostel rooms 72 hours prior to induction opening.",
+          recommendations: [
+            {
+              recommendation: "Integrate Admissions and Hostel allocation lists 3 days pre-induction",
+              responsibleUnit: "Directorate of ICT & Student Welfare",
+              priority: "High",
+              proposedTimeframe: "Prior to next intake"
+            }
+          ],
+          namesUnitsRepresented: "Remera Campus Welfare Committee",
+          facilitatorSignature: "UR M&E Lead",
+          signatureDate: today
+        }
+      ];
+
+      const existing = getAllRecords();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...demoRecords, ...existing]));
+      updateTotalBadge();
+      renderDataDashboard();
+      showToast("Demo Data Loaded", "Added 3 sample records (Form 1, Form 2, and Form 3) for testing.", "success");
+    }
+
+    // =========================================================================
+    // SEPARATE CSV EXPORTS FOR FORM 1, FORM 2, FORM 3 & COMPLETE JSON BACKUP
+    // =========================================================================
+    function exportFormCSV(formType) {
+      const activePool = getFilteredRecords();
+      const records = activePool.filter(r => r.formType === formType);
+      if (records.length === 0) {
+        showToast("No Data to Export", `No submissions match the current filter for ${formType.toUpperCase()}.`, "error");
+        return;
+      }
+
+      // Flatten nested objects/arrays cleanly for SPSS/Excel tabular structure
+      const flattenedRows = records.map(rec => {
+        const flat = {};
+        Object.entries(rec).forEach(([k, v]) => {
+          if (k === "checklist" || k === "overallRatings" || k === "serviceRatings") {
+            Object.entries(v || {}).forEach(([subK, subV]) => {
+              flat[subK] = subV;
+            });
+          } else if (Array.isArray(v)) {
+            flat[k] = JSON.stringify(v);
+          } else {
+            flat[k] = v;
+          }
+        });
+        return flat;
+      });
+
+      const headersSet = new Set();
+      flattenedRows.forEach(row => Object.keys(row).forEach(k => headersSet.add(k)));
+      const headers = Array.from(headersSet);
+
+      const csvLines = [headers.map(csvEscape).join(",")];
+      flattenedRows.forEach(row => {
+        csvLines.push(headers.map(h => csvEscape(row[h] ?? "")).join(","));
+      });
+
+      const dateStr = new Date().toISOString().split("T")[0];
+      const fileNames = {
+        form1: `UR_Induction_Form1_Daily_ME_${dateStr}.csv`,
+        form2: `UR_Induction_Form2_Student_Evaluation_${dateStr}.csv`,
+        form3: `UR_Induction_Form3_Closing_Consultation_${dateStr}.csv`
+      };
+
+      const blob = new Blob(["\uFEFF" + csvLines.join("\n")], { type: "text/csv;charset=utf-8;" });
+      triggerDownload(blob, fileNames[formType]);
+      showToast("CSV Exported", `Exported ${records.length} record(s) from ${formType.toUpperCase()}.`, "success");
+    }
+
+    function exportCompleteJSON() {
+      const records = getFilteredRecords();
+      if (records.length === 0) {
+        showToast("No Data to Export", "There are no matching records to export.", "error");
+        return;
+      }
+      const dateStr = new Date().toISOString().split("T")[0];
+      const blob = new Blob([JSON.stringify(records, null, 2)], { type: "application/json" });
+      triggerDownload(blob, `UR_Induction_Complete_Backup_${dateStr}.json`);
+      showToast("JSON Backup Exported", `Exported ${records.length} filtered record(s) across Forms 1–3.`, "success");
+    }
+
+    function triggerDownload(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function csvEscape(val) {
+      const str = String(val).replace(/\r?\n|\r/g, " ");
+      if (str.includes(",") || str.includes('"') || str.includes("\n")) {
+        return `"${str.replace(/"/g, '""')}"`;
+      }
+      return str;
+    }
+
+    // =========================================================================
+    // TOAST & SANITIZATION HELPERS
+    // =========================================================================
+    let toastTimer = null;
+    function showToast(title, msg, type = "info") {
+      const toast = document.getElementById("toast");
+      const icon = document.getElementById("toastIcon");
+      document.getElementById("toastTitle").textContent = title;
+      document.getElementById("toastMsg").textContent = msg;
+
+      if (type === "error") icon.className = "shrink-0 mt-0.5 text-rose-400";
+      else if (type === "success") icon.className = "shrink-0 mt-0.5 text-emerald-400";
+      else icon.className = "shrink-0 mt-0.5 text-urGold";
+
+      toast.classList.remove("hidden");
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(hideToast, 4500);
+    }
+
+    function hideToast() {
+      document.getElementById("toast").classList.add("hidden");
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+  </script>
+</body>
+</html>
